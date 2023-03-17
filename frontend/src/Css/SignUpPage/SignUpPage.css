@@ -1,0 +1,161 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+form {
+  width: 45%;
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password-input-group {
+  position: relative;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  top: 56%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #645959;
+  font-size: 18px;
+}
+
+.password-toggle-btn i {
+  font-size: 20px;
+  color: #777;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f64f64;
+  cursor: pointer;
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.label::after {
+  content: "*";
+  margin-left: 3px;
+  color: #ff3b30;
+}
+
+.required {
+  color: #ff3b30;
+}
+
+.background {
+  width: 50%;
+  background-image: url("../../Assets/Images/7220775.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.signup-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+.radio .radio-mark {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #9f8a8a;
+  margin-right: 10px;
+}
+.radio input[type="radio"]:checked + .radio-mark::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f64f64;
+}
+.radiogroup {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+.radiobuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.radiobuttons label:first-of-type {
+  margin-right: 10px;
+}
+.radio h5 {
+  font-weight: 400;
+  font-size: 17px;
+}
+.dont {
+  text-align: center;
+  color: #645959;
+  margin-top: 10px;
+}
+.dont a {
+  text-decoration: none;
+  color: #f64f64;
+}
+.error {
+  color: #bf1650;
+}
+.error::before {
+  display: inline;
+  content: "⚠ ";
+}

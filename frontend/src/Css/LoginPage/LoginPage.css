@@ -1,0 +1,62 @@
+.background-image {
+  width: 50%;
+  background-image: url("../../Assets/Images/42701.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
+.background-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.success {
+  width: 100%;
+  background-image: url("../../Assets/Images/patternMusic\ \(2\).jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
+.success::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.signin-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dont {
+  display: block;
+  margin-right: auto;
+}
+.dont a {
+  text-decoration: none;
+  color: #f64f64;
+}
+.create {
+  display: block;
+  padding: 10px 40px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  color: #55555a;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: rgba(99, 99, 99, 0.2) 1px 2px 8px 0px;
+  cursor: pointer;
+}

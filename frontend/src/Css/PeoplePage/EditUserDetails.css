@@ -1,0 +1,30 @@
+.modalBody .firstsection,.modalBody .secondsection {
+    display: flex;
+    justify-content: space-between;
+}
+.modalBody .firstsection label,.modalBody .secondsection label{
+    display: flex;
+    flex-direction: column;
+    width:45%;
+    color: #646f8d;
+}
+input {
+    padding:10px;
+    border:1px solid #c1c5d1;
+}
+.firstsection,.secondsection{
+    padding:10px;
+}
+h4 {
+    font-size: 19px;
+    padding:10px;
+    color:#2f3444;
+}
+.footermodal button:nth-of-type(2) {
+    display: block;
+    color:white;
+    border:none;
+    border-radius:5px;
+    background-color: blueviolet;
+    padding:8px 15px;
+}
