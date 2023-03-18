@@ -12,6 +12,7 @@ import Success from "../Components/Flouci/Success";
 import FailedPayment from "../Components/Flouci/FailedPayment";
 import ResetPage from "../pages/ResetPage";
 import ResetPassword from "../pages/ResetPassword";
+import ScoreLibrary from "../pages/ScoreLibrary";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
@@ -23,6 +24,7 @@ function MainRouter() {
         <UserContext.Provider value={{ user, setuser }}>
           <Router>
             {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
+            <div >
             {user && <Sidebar />}
             {admin && <SidebarAdmin />}
 
@@ -36,7 +38,9 @@ function MainRouter() {
               <Route path="/login" element={<LoginForm />} />
               <Route path="/reset" element={<ResetPage />} />
               <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+              <Route path="/my-library" element={<ScoreLibrary/>}/>
             </Routes>
+            </div>
           </Router>
         </UserContext.Provider>
       </AdminContext.Provider>

@@ -5,14 +5,14 @@ route.post("/register", (req, res) => {
   routeModel
     .register(
       req.body.username,
+      req.body.firstname,
+      req.body.lastname,
       req.body.email,
       req.body.password,
-      req.body.role,
-      req.body.firstname,
-      req.body.lastname
+      req.body.role
     )
     .then((user) => res.status(200).json({ user: user, msg: "registred!!!" }))
-    .catch((err) => res.json({ error: "email exist !!!!" }));
+    .catch((err) => res.json({ error: err }));
 });
 route.post("/login", (req, res) => {
   routeModel

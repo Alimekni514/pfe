@@ -12,12 +12,12 @@ function Success() {
   useEffect(() => {
     // Save the user
     const payload = JSON.parse(localStorage.getItem("savedUser"));
-    // axios
-    //   .post("http://localhost:5000/register", payload)
-    //   .then((result) => console.log(result.data))
-    //   .catch((err) => console.error(err));
+
     fetch("http://localhost:5000/register", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((result) => result.json())

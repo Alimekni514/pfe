@@ -20,7 +20,7 @@ let schemaUser = mongoose.Schema(
 var privatekey = "this is my secret key djhdk";
 let url = "mongodb://localhost:27017/testTawa";
 var User = mongoose.model("user", schemaUser);
-exports.register = (username, email, password, role, firstname, lastname) => {
+exports.register = (username, firstname, lastname, email, password, role) => {
   return new Promise((resolve, reject) => {
     mongoose
       .connect(url)
@@ -28,7 +28,7 @@ exports.register = (username, email, password, role, firstname, lastname) => {
         return User.findOne({ email: email });
       })
       .then((doc) => {
-        if (!doc) {
+        if (doc) {
           mongoose.disconnect();
           reject("we have this user in our database ");
         } else {
@@ -37,11 +37,11 @@ exports.register = (username, email, password, role, firstname, lastname) => {
             .then((hashedpassword) => {
               let user = new User({
                 username: username,
+                firstname: firstname,
+                lastname: lastname,
                 email: email,
                 password: hashedpassword,
                 role: role,
-                firstname: firstname,
-                lastname: lastname,
               });
               user
                 .save()
@@ -59,6 +59,10 @@ exports.register = (username, email, password, role, firstname, lastname) => {
               reject(err);
             });
         }
+      })
+      .catch((error) => {
+        mongoose.disconnect();
+        reject(error);
       });
   });
 };
@@ -132,12 +136,12 @@ exports.forgot = (email) => {
             { email: OldUser.email, id: OldUser._id },
             secret,
             {
-              expiresIn: "5m",
+              expiresIn: "15m",
             }
           );
           const link = `http://localhost:3000/reset-password/${OldUser._id}/${token}`;
           sendEmail({
-            to: "alimekni5@gmail.com",
+            to: OldUser.email,
             from: "ariana.conservatoire@gmail.com",
             subject: "Reset Password",
             text: ` this is your link : ${link}`,

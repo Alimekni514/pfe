@@ -7,10 +7,10 @@ module.exports = {
     const payload = {
       app_token: "82ac1884-b496-4809-87ec-f608fab2d4ab",
       app_secret: process.env.FLOUCI_SECRET,
-      amount: "3000",
+      amount: "10000",
       accept_card: "true",
-      success_link: "http://localhost:5173/success",
-      fail_link: "https://localhost:5173/fail",
+      success_link: "http://localhost:3000/success",
+      fail_link: "https://localhost:3000/fail",
       developer_tracking_id: "94c102aa-24ca-428d-9446-d19f4cf07462",
     };
     const headers = {

@@ -17,7 +17,6 @@ function ResetPassword() {
     formState: { errors },
   } = useForm({ criteriaMode: "all" });
   //Use Effect
-
   useEffect(() => {
     const urlParts = window.location.href.split("/");
     const id = urlParts[urlParts.length - 2];
@@ -31,6 +30,7 @@ function ResetPassword() {
       .then((res) => res.json())
       .then((data) => {
         if (data.data === "verified") {
+          console.log("hello");
           setshow(true);
         } else {
           Swal.fire({
