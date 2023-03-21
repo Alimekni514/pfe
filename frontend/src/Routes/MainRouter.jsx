@@ -13,6 +13,7 @@ import FailedPayment from "../Components/Flouci/FailedPayment";
 import ResetPage from "../pages/ResetPage";
 import ResetPassword from "../pages/ResetPassword";
 import ScoreLibrary from "../pages/ScoreLibrary";
+import CollectionFolder from "../Components/InstrumentList/CollectionFolder";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
@@ -24,22 +25,26 @@ function MainRouter() {
         <UserContext.Provider value={{ user, setuser }}>
           <Router>
             {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
-            <div >
-            {user && <Sidebar />}
-            {admin && <SidebarAdmin />}
+            <div>
+              {user && <Sidebar />}
+              {admin && <SidebarAdmin />}
 
-            <Routes>
-              <Route path="/" element={<LoginForm />} />
-              <Route path="/signUp" element={<SignUpPage />} />
-              <Route path="/about" element={<UserTable />} />
-              <Route path="/contact" element={<SignUpPage />} />
-              <Route path="/success" element={<Success />} />
-              <Route path="/fail" element={<FailedPayment />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/reset" element={<ResetPage />} />
-              <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
-              <Route path="/my-library" element={<ScoreLibrary/>}/>
-            </Routes>
+              <Routes>
+                <Route path="/" element={<LoginForm />} />
+                <Route path="/signUp" element={<SignUpPage />} />
+                <Route path="/about" element={<UserTable />} />
+                <Route path="/contact" element={<SignUpPage />} />
+                <Route path="/success" element={<Success />} />
+                <Route path="/fail" element={<FailedPayment />} />
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/reset" element={<ResetPage />} />
+                <Route
+                  path="/reset-password/:id/:token"
+                  element={<ResetPassword />}
+                />
+                <Route path="/my-library" element={<ScoreLibrary />} />
+                <Route path="/collection/:id" element={<CollectionFolder />} />
+              </Routes>
             </div>
           </Router>
         </UserContext.Provider>

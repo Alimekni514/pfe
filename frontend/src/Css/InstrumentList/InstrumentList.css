@@ -1,0 +1,111 @@
+.group-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    transition: all 0.3s;
+    width: 350px;
+  }
+  
+  .selected {
+    background-color: #ddd;
+    color: #222;
+  }
+  
+  .group-button:hover {
+    background-color: #ddd;
+  }
+  
+  .group-button > svg {
+    margin-left: 10px;
+  }
+  
+  .counter-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px
+  }
+  .instrument-list li {
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+  }
+  .counter-button {
+    color:white;
+    background-color: #f64f64;
+    outline:none;
+    border:none;
+    padding:8px;
+    font-weight: bold;
+    border-radius: 4px;
+
+  }
+  .counter-value {
+    font-weight:bold
+  }
+  .instrument-list {
+    width:350px;
+    padding:10px 15px;
+  }
+  .instrumentBody {
+    display: flex;
+    justify-content: space-between;
+  
+
+  }
+  .instrument-list-container {
+    width:600px;
+  }
+  .instrumentselected {
+    width:35%;
+  }
+  .instrumentselected .selected {
+    width:fit-content;
+    padding:7px;
+    margin-top:8px;
+    border-radius:6px;
+    color:white;
+    background-color: #f64f64;
+
+  }
+  .instrumentlistbody {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: rgba(0, 0, 0, 0.02) 3px 2px 12px;
+  }
+  .instrumentlistbody div {
+    display: flex;
+    align-items: center;
+      font-size: 16.5px;
+      font-weight: bold;
+      margin-right:200px;
+  }
+  .instrumentlistbody div span:first-of-type, .instrumentlistbody div span:nth-of-type(2){
+    font-weight: bold;
+    font-size:18px;
+  }
+  .instrumentlistbody div span:first-of-type {
+    color: #f64f64;
+  }
+  .createsc {
+    color:white;
+    outline:none;
+    border:none;
+    padding:8px 15px;
+    border-radius:5px;
+    background-color: #f64f64;
+  }
+  .search-container input {
+    width:100%;
+    border-radius:6px;
+    margin:15px 0px;
+
+  }

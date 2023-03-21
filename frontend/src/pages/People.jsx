@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import "../Css/PeoplePage/People.css";
 import {
@@ -20,7 +21,6 @@ import DeleteUser from "../Components/People/DeleteUser";
 import {useAuthUser} from 'react-auth-kit'
 function UserTable() {
   const auth = useAuthUser()
-
   const [users, setUsers] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);

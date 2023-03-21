@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FcFolder } from "react-icons/fc";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { getTimeElapsed } from "../../Assets/Functions-Need/TimeConversion";
@@ -10,6 +11,7 @@ function Collection({ collection, token, setcollections }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [text, setText] = useState(collection.title);
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   //functions
   const handleshow = () => {
@@ -46,9 +48,9 @@ function Collection({ collection, token, setcollections }) {
       .catch((err) => console.log(err));
   };
   //handle delete
-  const handledelete = () => {
+  const handledelete = async () => {
     const urlapi = `https://api.flat.io/v2/collections/${collection.id}`;
-    fetch(urlapi, {
+    await fetch(urlapi, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +60,7 @@ function Collection({ collection, token, setcollections }) {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
-    fetch("https://api.flat.io/v2/collections", {
+    await fetch("https://api.flat.io/v2/collections", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -72,6 +74,10 @@ function Collection({ collection, token, setcollections }) {
         setcollections(data);
       })
       .catch((err) => console.log(err));
+  };
+  //handle view
+  const handleview = () => {
+    navigate(`/collection/${collection.id}`);
   };
 
   return (
@@ -134,7 +140,7 @@ function Collection({ collection, token, setcollections }) {
             >
               <ul style={{ listStyle: "none" }}>
                 <li>
-                  <button>
+                  <button onClick={handleview}>
                     <GrFormView />
                     View
                   </button>
