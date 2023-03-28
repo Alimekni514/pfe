@@ -14,6 +14,10 @@ import ResetPage from "../pages/ResetPage";
 import ResetPassword from "../pages/ResetPassword";
 import ScoreLibrary from "../pages/ScoreLibrary";
 import CollectionFolder from "../Components/InstrumentList/CollectionFolder";
+import ChatPage from "../pages/ChatPage";
+import Navigation from "../pages/Navigation";
+import HomePage from "../pages/HomePage";
+import About from "../pages/About";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
@@ -30,9 +34,9 @@ function MainRouter() {
               {admin && <SidebarAdmin />}
 
               <Routes>
-                <Route path="/" element={<LoginForm />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/signUp" element={<SignUpPage />} />
-                <Route path="/about" element={<UserTable />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<SignUpPage />} />
                 <Route path="/success" element={<Success />} />
                 <Route path="/fail" element={<FailedPayment />} />
@@ -44,6 +48,8 @@ function MainRouter() {
                 />
                 <Route path="/my-library" element={<ScoreLibrary />} />
                 <Route path="/collection/:id" element={<CollectionFolder />} />
+                <Route path="/chat" element={<ChatPage/>}/>
+                <Route path="/navbar" element={<Navigation/>}/>
               </Routes>
             </div>
           </Router>

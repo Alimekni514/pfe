@@ -58,7 +58,10 @@ function SignUpPage() {
 
   return (
     <div className="signup-container">
-      <div className="background"></div>
+      {/* <div className="background"></div> */}
+      <div className="backgroundundraw">
+      </div>
+      
       <form onSubmit={handleSubmit(onsubmit)}>
         <div className="radiogroup">
           Register As:

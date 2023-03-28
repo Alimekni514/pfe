@@ -20,3 +20,167 @@ code {
   font-family: "Lato", sans-serif;
   list-style: none;
 }
+.ce-default-button,
+.ce-chat-form-button {
+  background-color: rgb(246, 79, 100) !important ;
+  color: white !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  font-size: 18px !important ;
+}
+.ce-chat-form {
+  margin-bottom: 25px !important;
+}
+.ce-chat-card-subtitle {
+  left: 15px !important;
+}
+.ce-chat-list {
+  overflow: auto !important;
+  padding: 8px 6px !important;
+}
+.ce-chat-list-column,
+.ce-message-list,
+.ce-chat-feed-column,
+.ce-chat-settings-column {
+  overflow: auto !important;
+}
+.ce-my-message-body {
+  padding: 10px !important;
+}
+.ce-my-message-body {
+  border-radius: 16px !important;
+}
+.ce-autocomplete-input {
+  border: 1px solid #ddd !important;
+  margin: 10px 16px 23px 6px !important;
+}
+.ce-dropdown-children button {
+  color: white !important;
+  background-color: rgb(246, 79, 100) !important;
+  margin-top: 20px !important;
+}
+.ce-member-delete-button {
+  top: -15px !important;
+}
+.ce-avatar-status {
+  position: absolute;
+  top: 0px;
+  right: 30px !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 100%;
+  border: 2px solid white;
+  background-color: rgb(245, 34, 45);
+}
+.ce-chat-avatars {
+  margin-bottom: 10px !important;
+}
+.ce-chat-settings-title {
+  margin-bottom: 8px !important;
+}
+.ce-dropdown-children {
+  margin-top: 25px !important;
+}
+.ce-message-form {
+  padding-top: 4px !important;
+  width: 100% !important;
+  position: absolute;
+  bottom: 0px;
+  height: 70px;
+  align-items: center;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+#msg-textarea {
+  padding-bottom: 20px !important;
+  height: 25px !important;
+}
+#ce-send-message-button {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 6px 27px !important;
+  color: white;
+  transition: all 0.33s ease 0s;
+  position: relative;
+  bottom: 6px !important;
+  background-color: rgb(246 79 100) !important;
+  margin-top: 24px !important;
+  margin-right: 8px !important;
+}
+.ce-chat-card-avatar {
+  display: none !important;
+}
+.ce-chat-card-title {
+  left: 15px !important;
+  font-weight: bold !important;
+}
+.ce-file,
+.ce-message-file {
+  border: 1px solid #ddd !important;
+}
+.ce-my-message-timestamp {
+  color: #ddd !important;
+}
+#ce-chat-feed-title- {
+  width: 100%;
+  font-family: Avenir;
+  font-size: 24px;
+  font-weight: 600;
+  color: #131313;
+  margin-top: 9px;
+}
+.ce-chat-header-subtitle {
+  display: none !important;
+}
+.ce-chat-engine {
+  height: 90vh !important ;
+  width: 100% !important;
+  border: 1px solid #ddd;
+}
+.terfess {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 2px solid #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  position: relative;
+}
+
+.terfess::before,
+.terfess::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(246, 79, 100);
+  transition: width 0.3s ease-in-out;
+}
+
+.terfess::before {
+  right: 50%;
+}
+.terfess::after {
+  left: 50%;
+}
+
+.terfess:hover::before,
+.terfess:hover::after {
+  width: 50%;
+}
+
+.terfess:hover span {
+  color: #333;
+}
+
+.terfess span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease-in-out;
+}

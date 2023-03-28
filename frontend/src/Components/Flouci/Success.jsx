@@ -12,7 +12,6 @@ function Success() {
   useEffect(() => {
     // Save the user
     const payload = JSON.parse(localStorage.getItem("savedUser"));
-
     fetch("http://localhost:5000/register", {
       method: "POST",
       headers: {
@@ -35,6 +34,22 @@ function Success() {
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
+    //signup for the chat
+    const url1 = "http://localhost:5000/signupchat";
+    fetch(url1, {
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) =>{
+            console.log(data);
+            const prefix="CHAT_";
+            localStorage.setItem(`${prefix}user`,JSON.stringify({...data.user,secret:payload.password}));
+      })
+      .catch((err) => console.log("error", err));
   }, []);
   const handleclick = () => {
     navigate("/login");

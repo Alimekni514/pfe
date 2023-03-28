@@ -14,6 +14,29 @@ route.post("/register", (req, res) => {
     .then((user) => res.status(200).json({ user: user, msg: "registred!!!" }))
     .catch((err) => res.json({ error: err }));
 });
+// route for signupChat
+route.post("/signupchat",(req,res)=> {
+  routeModel
+  .signupchat(
+    req.body.username,
+    req.body.firstname,
+    req.body.lastname,
+    req.body.email,
+    req.body.password
+  )
+  .then((user)=>res.status(200).json({user:user,msg:"registred in the chat!!!!"}))
+  .catch((err)=>res.json({error:err}))
+})
+//route for signinChat
+route.get("/signinchat",(req,res)=> {
+  routeModel
+  .signinchat(
+    req.body.username,
+    req.body.password
+  )
+  .then((user)=>res.status(200).json({user:user,msg:"authentificated!!"}))
+  .catch((err)=>res.json({error:err}))
+})
 route.post("/login", (req, res) => {
   routeModel
     .login(req.body.email, req.body.password)

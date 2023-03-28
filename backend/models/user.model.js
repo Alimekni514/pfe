@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
+const axios = require("axios");
 
 let schemaUser = mongoose.Schema(
   {
@@ -34,7 +35,7 @@ exports.register = (username, firstname, lastname, email, password, role) => {
         } else {
           bcrypt
             .hash(password, 10)
-            .then((hashedpassword) => {
+            .then(async (hashedpassword) => {
               let user = new User({
                 username: username,
                 firstname: firstname,
@@ -66,6 +67,36 @@ exports.register = (username, firstname, lastname, email, password, role) => {
       });
   });
 };
+//signupchat
+exports.signupchat = (username, firstname, lastname, email, password) => {
+  return new Promise(async (resolve, reject) => {
+    await axios
+      .post(
+        "https://api.chatengine.io/users/",
+        { username, secret: password, email, firstname, lastname },
+        { headers: { "Private-Key": process.env.CHAT_ENGINE_PRIVATE_KEY } }
+      )
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((err) => console.error(err.message));
+  });
+};
+//signin chat
+exports.signinchat = (username, password) => {
+  return new Promise(async (resolve, reject) => {
+       await axios.get("https://api.chatengine.io/users/me/", {
+        headers: {
+          "Project-ID": process.env.CHAT_ENGINE_PROJECT_ID,
+          "User-Name": username,
+          "User-Secret": password,
+        },
+      })
+      .then((result)=>resolve(result.data))
+      .catch((err)=>console.error(err.message))
+
+    })}; 
+    
 exports.login = (email, password) => {
   return new Promise((resolve, reject) => {
     mongoose
