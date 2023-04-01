@@ -1,53 +1,109 @@
 .payment-success-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.payment-success-image-container {
-  margin-top: 50px;
-  width: 400px;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 50%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.payment-success-image-container img {
+  height: 100vh;
+  gap: 150px;
   width: 100%;
-  height: auto;
 }
-
-.payment-success-message-container {
-  margin-top: 50px;
+.imgsuccessful img {
+  width: 400px;
+}
+.contentsuccessful {
+  width: 30%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 25px 60px;
+  border-radius: 20px;
+}
+.contentsuccessful h1 {
+  color: rgb(246, 79, 100);
+}
+.textsuccessful {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  flex-direction: column;
+  padding: 5px 5px 10px;
+  border-bottom: 5px dashed #e8bbbb;
 }
-
-.payment-success-message-container h2 {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 20px;
+.textsuccessful svg {
+  color: rgb(246, 79, 100);
+  font-size: 60px;
+  margin: 0px 0px 10px;
 }
-
-.payment-success-message-container p {
+.textsuccessful span {
+  display: inline-block;
+}
+.textsuccessful p {
+  color: #666;
+}
+.amountpaid {
+  padding: 20px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.amountpaid span {
+  font-size: 18px;
+  display: inline-block;
+  color: #777;
+}
+.amountpaid h2 {
+  color: #666;
   font-size: 20px;
-  margin-bottom: 20px;
 }
+.contentsuccessful {
+  position: relative;
+}
+.contentsuccessful::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
 
-.payment-success-message-container button {
-  padding: 10px 20px;
-  font-size: 24px;
+  border-radius: 50%;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+}
+.iconmusicnote {
+  width: 50px;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  z-index: -3;
+}
+.iconmusicnote1 {
+  width: 50px;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+.contentpay  .stepWrapper {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.loginpayment {
+  padding: 8px 12px;
   color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
+  outline: none;
+  background-color: rgb(246, 79, 100);
+  border:none;
+  border-radius:4px;
 
-.payment-success-message-container button:hover {
-  background-color: #0056b3;
+}
+.saxopayment{
+  width:50px;
+}
+.paymentfooter{
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%
+
 }

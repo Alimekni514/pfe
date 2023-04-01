@@ -37,7 +37,7 @@ const Navigation = () => {
       </ul>
       <div>
        
-        <button className="signupbtn">
+        <button className="signupbtn" onClick={()=>window.location.href="/signup"}>
           Sign Up
         </button>
         <FaRegUser/>

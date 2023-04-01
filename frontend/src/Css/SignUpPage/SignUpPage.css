@@ -7,12 +7,14 @@
 }
 
 form {
-  width: 45%;
   padding: 30px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
 }
 
 .label {
@@ -22,7 +24,7 @@ form {
 }
 
 .form-control {
-  width: 100%;
+
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -167,3 +169,217 @@ form {
   justify-content: center;
   background-color: #3e3e3e;
 }
+.womanmusic {
+  transform:rotateY(180deg);
+  width:40%;
+}
+.contentsignup{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+}
+.signup-container{
+  width:50%
+}
+.activatedrole{
+  padding:3px 10px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #f64f64;
+}
+.notactivatedrole {
+  padding:3px 10px;
+  border-radius: 6px;
+  color: #f64f64;
+  border:1px solid #f64f64;
+}
+.custom-date-input {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+.custom-date-input:focus {
+  outline: none;
+  border-color: blue;
+}
+.form-groups {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.form-group {
+  width:50%;
+  padding:0px 5px;
+}
+.form {
+  width: 100% !important;;
+}
+#password{
+  width: 100%;
+}
+
+.progress {
+  width: 0;
+  background-color: red;
+  height: 5px;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+
+.circle {
+  background: #fff;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #f1f1f1;
+  border-radius: 50px;
+}
+
+.active {
+  border-color: red;
+  transition: 0.6s ease-in;
+}
+
+.btn {
+  border: none;
+  padding: 5px 8px;
+  width: 80px;
+  font-size: 14px;
+  border-radius: 5px;
+  background: red;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background: #f1f1f1;
+  color: #000;
+  cursor: not-allowed;
+}
+.circle {
+  width: 29px;
+  height: 29px;
+  line-height: 25px;
+  background-color: #f64f64;
+  color: white;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.stepWrapper {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.stepBlock .circleWrapper {
+  padding: 0px 20px;
+  position: relative;
+}
+
+.selected .circle {
+  color: black;
+  background-color: white;
+  border-color: #f64f64;
+}
+.selected {
+  background-color:white!important;
+}
+
+.stepBlock:not(:last-child) > .circleWrapper::after {
+  content: '';
+  width: 62%;
+  height: 2px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: -21px;
+  background-color: rgb(231, 126, 126);
+  margin: auto;
+}
+
+.stepBlock:not(:last-child) > .circleWrapper::after {
+  height: 3px;
+}
+
+.stepBlock:not(:last-child).selected > .circleWrapper::after, .stepBlock:not(:last-child).selected ~ .stepBlock:not(:last-child) > .circleWrapper::after {
+  height: 2px;
+  opacity: 0.6;
+}
+
+.primaryButton {
+  padding: 10px 25px;
+  background-color: green;
+  border: none;
+  margin: 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+}
+.birthday {
+  display: flex;
+  flex-direction: column;
+}
+.instrumentdiv {
+  display: flex;
+  flex-direction: column;
+  width:33%;
+  align-items: center;
+}
+.instrumentdiv img {
+  width:90px;
+  height:100px
+}
+.instrumentdiv h6 {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  text-align:center;
+}
+.instrumentssignup {
+  display: flex;
+  flex-wrap: wrap;
+}
+.btnsignup {
+  padding:6px 10px;
+  color: white;
+  background-color: #f64f64;
+  border: none;
+  border-radius: 6px;
+}
+.btnsubmit {
+  padding:6px 10px;
+  color: white;
+  background-color: #fc1a38;
+  border: none;
+  border-radius: 6px;
+}
+.buttonssignup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:30px;
+  gap:20px
+}
+

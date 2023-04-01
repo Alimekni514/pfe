@@ -5,6 +5,9 @@ import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaKaaba } from "react-icons/fa";
+import pattern from "../assets/Images/home/pattern.png";
+import person from "../assets/Images/failed/personholding.png";
+import star from "../assets/Images/failed/stars.png";
 function ResetPage() {
   //states
   const navigate = useNavigate();
@@ -45,6 +48,8 @@ function ResetPage() {
     navigate("/login");
   };
   return (
+    <>
+    
     <div className="reset-page">
       <div className="reset-card">
         <img src={reset} alt="resetImage" className="resetimg" />
@@ -73,9 +78,13 @@ function ResetPage() {
             <BsArrowLeft className="arrow" />
             Back to Login
           </button>
+
         </form>
+        
       </div>
+      
     </div>
+        </>    
   );
 }
 

@@ -29,7 +29,7 @@ function MainRouter() {
         <UserContext.Provider value={{ user, setuser }}>
           <Router>
             {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
-            <div>
+      
               {user && <Sidebar />}
               {admin && <SidebarAdmin />}
 
@@ -51,7 +51,6 @@ function MainRouter() {
                 <Route path="/chat" element={<ChatPage/>}/>
                 <Route path="/navbar" element={<Navigation/>}/>
               </Routes>
-            </div>
           </Router>
         </UserContext.Provider>
       </AdminContext.Provider>

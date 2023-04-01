@@ -7,8 +7,8 @@ import {
 } from "react-chat-engine-advanced";
 //server
 const projectId = "66163a76-47b0-4036-b183-3ddb56492bea";
-const user=JSON.parse(localStorage.getItem("CHAT_user"));
-const {username,secret}=user;
+// const user=JSON.parse(localStorage.getItem("CHAT_user"));
+// const {username,secret}=user;
 function ChatPage() {
     const chatprops = useMultiChatLogic(projectId, username, secret);
   return (

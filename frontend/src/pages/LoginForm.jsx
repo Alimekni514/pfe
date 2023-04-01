@@ -5,10 +5,15 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../Css/LoginPage/LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../contexts/AdminContext";
+import Navigation from "./Navigation"
 import UserContext from "../contexts/UserContext";
 import { useSignIn } from "react-auth-kit";
 import Swal from "sweetalert2";
 import axios from "axios";
+import womanviolon from "../assets/Images/SignIn/womanviolon.png";
+import musicsolam from "../assets/Images/SignIn/musicsolem.png";
+import saxophone from "../assets/Images/home/saxophone.png";
+import patternmusic from "../assets/Images/SignIn/patternmusic.png"
 function LoginForm() {
   //States
   const {
@@ -56,10 +61,22 @@ function LoginForm() {
     setShowPassword(!showPassword);
   };
   return (
+    <div className="signinkol">
+       <Navigation/>
+      <div className="bodysignin">
+      <img src={womanviolon} alt="violon" className="violonwoman"/>
+      <img src={musicsolam} alt="solam" className="solam" />
+    <div className="formsignin">
+   
+    
     <div className="signin-container">
-      <div className="background-image"></div>
+   
       <form onSubmit={handleSubmit(onsubmit)}>
-        <div className="form-group">
+        <div className="form-groupsignin">
+          <h1 className="signintitle">Sign In
+            <img src={saxophone} alt=""/>
+        
+          </h1>
           <label htmlFor="email" className="label">
             Email address
           </label>
@@ -116,7 +133,7 @@ function LoginForm() {
             </button>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button  id="signinbtn"type="submit" className="btn btn-primary">
           Sign In
         </button>
         <span className="dont">
@@ -129,6 +146,9 @@ function LoginForm() {
           onClick={() => (window.location.href = "/SignUp")}
         />
       </form>
+    </div>
+    </div>
+    </div>
     </div>
   );
 }

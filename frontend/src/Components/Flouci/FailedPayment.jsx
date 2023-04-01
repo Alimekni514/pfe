@@ -1,6 +1,7 @@
 import React from "react";
 import "../../Css/FailedPayment/FailedPayment.css";
-import failed from "../../Assets/Images/FAILED.jpg";
+import personholdin from "../../assets/Images/failed/personholding.png";
+import errorpayment from "../../assets/Images/failed/errorpayment.png"
 import axios from "axios"
 const FailedPayment = () => {
     const payload = {
@@ -21,10 +22,12 @@ const FailedPayment = () => {
     <div className="failed-payment-container">
       <div className="failed-payment">
         <img
-          src={failed}
+          src={"https://cdn-icons-png.flaticon.com/512/1304/1304038.png"}
           alt="Failed Payment"
           className="failed-payment-image"
         />
+        <img src={personholdin} alt="failed" className="personholding"/>
+        <img src={errorpayment} alt="error" className="erroriconmusic"/>
         <h2 className="failed-payment-title">Payment Failed</h2>
         <p className="failed-payment-message">
           Sorry, your payment was not successful.
