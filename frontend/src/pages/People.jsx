@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import "../Css/PeoplePage/People.css";
 import {
@@ -12,15 +11,15 @@ import { FcSearch, FcClearFilters, FcExport } from "react-icons/fc";
 import { getTimeElapsed } from "../Assets/Functions-Need/TimeConversion";
 import { IoMdClose } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
-import { convertJSONtoExcel } from "../Assets/Functions-Need/ConvertJSONtoExcel"
+import { convertJSONtoExcel } from "../Assets/Functions-Need/ConvertJSONtoExcel";
 import Modal from "react-modal";
 import ChangeRoleModal from "../Components/People/ChangeRoleModal";
 import ResetPassword from "../Components/People/ResetPassword";
 import EditUserDetails from "../Components/People/EditUserDetails";
 import DeleteUser from "../Components/People/DeleteUser";
-import {useAuthUser} from 'react-auth-kit'
+import { useAuthUser } from "react-auth-kit";
 function UserTable() {
-  const auth = useAuthUser()
+  const auth = useAuthUser();
   const [users, setUsers] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -32,7 +31,7 @@ function UserTable() {
   const [modalIsOpen2, setModalIsOpen2] = useState(false);
   const [modalIsOpen3, setModalIsOpen3] = useState(false);
   const [modalIsOpen4, setModalIsOpen4] = useState(false);
-  const token = `1c126a1183aaaac514653cb3555fb05953ba09aba270914c8ca6dc65709fafc822dedeecbd4459d24ad7cf12a3c0eda8f2a8ec415d453a5b47d2bb68dd598dfa`;
+  const token = import.meta.env.VITE_ADMIN_TOKEN;
   const customStyles = {
     content: {
       height: "100vh",
@@ -92,8 +91,8 @@ function UserTable() {
   };
 
   useEffect(() => {
-    const token =
-      "1c126a1183aaaac514653cb3555fb05953ba09aba270914c8ca6dc65709fafc822dedeecbd4459d24ad7cf12a3c0eda8f2a8ec415d453a5b47d2bb68dd598dfa";
+    const token = import.meta.env.VITE_ADMIN_TOKEN;
+    console.log(token);
     fetch("https://api.flat.io/v2/organizations/users", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -193,8 +192,7 @@ function UserTable() {
 
   return (
     <>
-    <div>
-        </div>
+      <div></div>
       <div className="headerSection">
         <div className="filterSection">
           <div style={{ position: "relative", width: "fit-content" }}>

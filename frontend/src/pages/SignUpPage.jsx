@@ -108,12 +108,12 @@ function SignUpPage() {
                   <span
                     id="userspan"
                     className={
-                      userType.includes("User")
+                      userType.includes("user")
                         ? "activatedrole"
                         : "notactivatedrole"
                     }
                     onClick={(e) => {
-                      setUserType(e.target.textContent);
+                      setUserType(e.target.textContent.toLowerCase());
                     }}
                   >
                     User

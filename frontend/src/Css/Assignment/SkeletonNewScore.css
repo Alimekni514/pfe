@@ -1,0 +1,94 @@
+.bodyassignment {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.bodyassignment .fbodyassignment {
+  padding: 40px 0px 0px 30px;
+}
+.assignmentdetails h3 {
+  width: fit-content;
+  font-size: 25px;
+  margin: 0px 0px 20px;
+}
+.assignmentdetails div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.assignmentdetails div span {
+  color: #9ca7b7;
+}
+.assignmentbox img {
+  margin-bottom: 16px;
+  width: 314px;
+  height: 169px;
+  border-radius: 8px;
+}
+.barassignment {
+  border-bottom: 1px solid #c1c5d1;
+  font-size: 16px;
+  line-height: 24px;
+  padding-bottom: 10px;
+}
+.assignmentbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 60px;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 8px;
+}
+.assignmentbox p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #646f8d;
+  text-align: center;
+}
+
+.barassignment a {
+  color: #111111cf;
+  text-decoration: none;
+  margin-right: 15px;
+  padding-bottom: 11px;
+  font-size: 18px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.activedetail {
+  border-bottom: 2px solid #000;
+}
+.toolsassignment button {
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #777;
+  padding: 8px 17px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.toolsassignment button svg {
+  color: #777;
+  font-size: 20px;
+}
+.toolsassignment {
+  margin: 50px 0px;
+}
+#urlo {
+  text-decoration: none;
+  display: block;
+  color: white;
+  background-color: rgb(246, 79, 100);
+  width: fit-content;
+  padding: 3px 12px;
+  border-radius: 7px;
+  margin-top: 20px;
+}

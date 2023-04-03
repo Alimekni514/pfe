@@ -6,6 +6,7 @@ import SignUpPage from "../pages/SignUpPage";
 import { AuthProvider } from "react-auth-kit";
 import AdminContext from "../contexts/AdminContext";
 import UserContext from "../contexts/UserContext";
+import Assignment from "../contexts/Assignment";
 import SidebarAdmin from "../Components/SideBarAdmin/SidebarAdmin";
 import LoginForm from "../pages/LoginForm";
 import Success from "../Components/Flouci/Success";
@@ -18,18 +19,24 @@ import ChatPage from "../pages/ChatPage";
 import Navigation from "../pages/Navigation";
 import HomePage from "../pages/HomePage";
 import About from "../pages/About";
+import CreateAssignment from "../Components/Assignments/CreateAssignment";
+import People from "../pages/People";
+import SkeletonNewScore from "../Components/Assignments/SkeletonNewScore";
+import EditCreateAssignment from "../Components/Assignments/EditCreateAssignment";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
   const [user, setuser] = useState(null);
+  const [assignment, setassignment] = useState(null);
 
   return (
     <AuthProvider authType={"localstorage"} authName={"_auth"}>
       <AdminContext.Provider value={{ admin, setadmin }}>
         <UserContext.Provider value={{ user, setuser }}>
-          <Router>
-            {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
-      
+          <Assignment.Provider value={{ assignment, setassignment }}>
+            <Router>
+              {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
+
               {user && <Sidebar />}
               {admin && <SidebarAdmin />}
 
@@ -48,10 +55,15 @@ function MainRouter() {
                 />
                 <Route path="/my-library" element={<ScoreLibrary />} />
                 <Route path="/collection/:id" element={<CollectionFolder />} />
-                <Route path="/chat" element={<ChatPage/>}/>
-                <Route path="/navbar" element={<Navigation/>}/>
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/navbar" element={<Navigation />} />
+                <Route path="/assignment" element={<CreateAssignment />} />
+                <Route path="/class/:classid/assignment/:assignmentId" element={<SkeletonNewScore/>}/>
+                <Route path="/class/:classid/assignment/:assignmentId/edit" element={<EditCreateAssignment/>}/>
+                <Route path="/people" element={<People />} />
               </Routes>
-          </Router>
+            </Router>
+          </Assignment.Provider>
         </UserContext.Provider>
       </AdminContext.Provider>
     </AuthProvider>

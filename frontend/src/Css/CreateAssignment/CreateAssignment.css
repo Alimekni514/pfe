@@ -1,0 +1,297 @@
+.image-container {
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+}
+.ContentHeaderAssignment {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.ContentHeaderAssignment button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #646f8d;
+  border: none;
+  background-color: #fff;
+  font-size: 16px;
+}
+.ContentHeaderAssignment h5 {
+  font-size: 17px;
+  letter-spacing: 1.2px;
+}
+.publishassignment {
+  padding: 9px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  border: none;
+  background-color: rgb(246, 79, 100);
+  gap: 10px;
+  border-radius: 6px;
+}
+.assignmentbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin: 0px auto;
+  padding: 25px;
+}
+.assignmentbody .inputgroup input {
+  width: 100%;
+  border-radius: 5px;
+}
+.assignmentbody .inputgroup label {
+  display: flex;
+  margin-bottom: 3px;
+}
+.dategroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0px;
+}
+.inputgroup {
+  margin: 15px 0px;
+}
+.dategroup div {
+  width: 47%;
+}
+.dategroup div input {
+  width: 100%;
+}
+.dategroup div label {
+  display: block;
+  margin-bottom: 5px;
+}
+.covertitle {
+  color: #666;
+  margin: 10px 0px;
+  font-size: 16px;
+}
+.assignmentType {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  justify-content: space-between;
+}
+.assignmentType div {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.assignmentType div h6 {
+  font-size: 15px;
+  margin: 8px 0px;
+}
+.assignmentType div p {
+  color: #666;
+  line-height: 1.4;
+}
+.instructionsNewScore textarea {
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  min-height: 100px;
+  width: 100%;
+}
+.instructionsNewScore textarea:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px #0077ff20;
+}
+
+.instructionsNewScore textarea::placeholder {
+  color: #999;
+}
+.instructionsNewScore .buttons {
+  padding: 15px;
+  background-color: rgba(100, 111, 141, 0.08);
+  border-radius: 5px;
+}
+.instructionsNewScore .buttons button {
+  padding: 4px 15px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border: 1px solid #ccc;
+  margin-right: 15px;
+}
+.instructionsNewScore h6 {
+  font-size: 16px;
+  color: #666;
+  margin: 8px 5px;
+}
+#addlink {
+  position: relative;
+}
+#addlink1 {
+  width: 40%;
+  background-color: rgb(246, 79, 100);
+  color: #fff;
+  margin-right: 0px;
+  font-size: 13px;
+  border-radius: 4px;
+  white-space: nowrap;
+  padding: 10px 25px;
+}
+
+.addLinkNewScore {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 7px;
+  padding: 8px;
+  border-radius: 7px;
+  background-color: #fff;
+  bottom: -76px;
+  left: -70px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.scoreassignment {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 15px;
+}
+.scoreassignment h5 {
+  font-size: 16px;
+  color: #666;
+}
+.scoreassignment svg {
+  font-size: 18px;
+}
+.selectedscore {
+  background-color: rgba(100, 111, 141, 0.08);
+}
+.choosebtn {
+  padding: 6px 17px;
+  display: block;
+  margin: 10px 0px 10px auto;
+  outline: none;
+  color: #fff;
+  background-color: rgb(246, 79, 100);
+  border: none;
+  border-radius: 4px;
+}
+
+.templatediv {
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.contenttemplatediv {
+  background-color: rgba(100, 111, 141, 0.08);
+  padding: 10px;
+  border-radius: 5px;
+}
+#choosebtn {
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#choosebtn svg {
+  color: #fff;
+  font-size: 18px;
+}
+.assignmentType div {
+  position: relative;
+}
+.assignmentType div input {
+  position: absolute;
+  right: 11px;
+  top: 10px;
+}
+
+.copiedscore {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+.copiedscore h5 {
+  white-space: nowrap;
+}
+.copiedscore p {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.grade {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 11px 20px;
+  border-radius: 11px;
+  margin: 10px 0px;
+  position: relative;
+}
+.grade h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.grade p {
+  color: #666;
+  font-size: 14px;
+  padding-left: 10px;
+  margin: 0px 0px 10px;
+}
+.grade input {
+  margin: 8px 10px;
+}
+#lockedscore {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
