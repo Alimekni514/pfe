@@ -1,0 +1,169 @@
+.classes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.class-card {
+  padding: 24px 24px 16px;
+
+  border-radius: 8px;
+}
+.classroom {
+  background-color: #fff;
+}
+.classname-style {
+  color: white;
+}
+.classroom-icon {
+  position: absolute;
+  right: 890px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.classroom-header {
+  margin-top: 16px;
+}
+nav {
+  background-color: rgba(255, 255, 255, 0.041);
+}
+
+.classroomul {
+  list-style: none;
+  display: flex;
+  border-bottom: 1px solid #c1c5d1;
+  font-size: 16px;
+  line-height: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: fit-content;
+}
+
+.classroomul li {
+  color: #646f8d;
+  margin-right: 40px;
+  padding-bottom: 16px;
+  font-size: 18px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+
+.selectedli {
+  color: #2f3446 !important;
+  border-bottom: 2px solid #2f3446 !important;
+  padding-bottom: 14px !important;
+}
+.iconholder {
+  height: 40px;
+  width: 40px;
+  flex: 0 0 40px;
+  border-radius: 8px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f64f64;
+}
+.iconholder svg {
+  color: #fff !important;
+}
+
+.filterassignment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 25px 0px;
+}
+.filter-button-container {
+  display: flex;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  padding: 2px;
+  margin-right: 9px;
+}
+
+.filter-button:hover {
+  background-color: #eee;
+}
+
+.filter-button span {
+  margin-right: 8px;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -11px;
+  z-index: 1;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.filter-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-dropdown li {
+  padding: 4px 4px;
+  cursor: pointer;
+  font-size: 16px !important;
+}
+
+.filter-dropdown li:hover {
+  background-color: #eee;
+}
+
+/* React Icons styles */
+.filter-button svg {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.filter-button svg.up {
+  transform: rotate(180deg);
+}
+
+/* Show dropdown when its corresponding button is clicked */
+.filter-button-container > div:hover + .filter-dropdown,
+.filter-dropdown:hover {
+  display: block;
+}
+.filter-button-parent {
+  position: relative;
+}
+.createassignmentbtn {
+  color: white;
+  background-color: #f64f64;
+  border: none;
+  padding: 17px 10px;
+  border-radius: 6px;
+}
+.assignmentdiv {
+  display: flex;
+  justify-content: flex-start;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  align-items: center;
+  padding: 15px 30px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+.assignmentimg {
+  width: 230px;
+  border-radius: 8px;
+}

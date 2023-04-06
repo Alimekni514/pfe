@@ -191,8 +191,7 @@ function UserTable() {
   };
 
   return (
-    <>
-      <div></div>
+    <div className="specialcontainer">
       <div className="headerSection">
         <div className="filterSection">
           <div style={{ position: "relative", width: "fit-content" }}>
@@ -504,7 +503,7 @@ function UserTable() {
         token={token}
         setusers={setUsers}
       />
-    </>
+    </div>
   );
 }
 

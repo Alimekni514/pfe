@@ -6,7 +6,7 @@ import conser from "../../Assets/Images/conservatoire.jpg";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiMusicalScore } from "react-icons/gi";
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [showServices, setShowServices] = useState(false);
 
   const toggleSidebar = () => {
@@ -26,7 +26,7 @@ const Sidebar = () => {
         <img src={conser} alt="conservatoire" className="conservatoire" />
         <ul className="sidebar-menu">
           <li className="sidebar-menu-item">
-            <SiGoogleclassroom className="classroom" />
+           
             <Link to="/" onClick={toggleSidebar}>
               Classes
             </Link>

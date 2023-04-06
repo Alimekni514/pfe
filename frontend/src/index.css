@@ -184,3 +184,6 @@ code {
   z-index: 1;
   transition: color 0.3s ease-in-out;
 }
+.specialcontainer {
+  padding: 100px 20px 0px 340px;
+}

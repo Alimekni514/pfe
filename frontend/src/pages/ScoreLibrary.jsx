@@ -3,6 +3,10 @@ import Collection from "../Components/ScoreLibrary/Collection";
 import UserScore from "../Components/ScoreLibrary/UserScore";
 import Modal from "react-modal";
 import ModalInstrument from "../Components/InstrumentList/ModalInstrument";
+const token =
+  window.localStorage.getItem("flat_token_user") ??
+  import.meta.env.VITE_ADMIN_TOKEN;
+
 function ScoreLibrary() {
   //states
   const [collections, setcollections] = useState([]);
@@ -16,7 +20,9 @@ function ScoreLibrary() {
 
   //UseEffect+SideEffect:Fetch the collections and the Scores
   useEffect(() => {
-    const token = localStorage.getItem("flat_token_user"); //fetch the collections
+    const token =
+      window.localStorage.getItem("flat_token_user") ??
+      import.meta.env.VITE_ADMIN_TOKEN; //fetch the collections
     const urlcollections = "https://api.flat.io/v2/collections";
     fetch(urlcollections, {
       headers: {
@@ -52,7 +58,10 @@ function ScoreLibrary() {
         setuserid(data.id);
         const userscores = `https://api.flat.io/v2/users/${data.id}/scores`;
         fetch(userscores, {
-          headers: headers,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -84,7 +93,7 @@ function ScoreLibrary() {
   Modal.setAppElement("#root");
 
   return (
-    <div>
+    <div className="specialcontainer">
       <h3>Scores</h3>
       <div
         className="bodyScore"

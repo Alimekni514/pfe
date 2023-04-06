@@ -13,7 +13,7 @@ function ModalInstrument({
 }) {
   //states
   const [firstwindow, setfirstwindow] = useState(true);
-   collection=collection || "root";
+   collection=collection ?? "root";
   //states
   const [title, settitle] = useState("");
   //Functions

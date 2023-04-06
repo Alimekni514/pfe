@@ -92,3 +92,33 @@
   border-radius: 7px;
   margin-top: 20px;
 }
+#exitsvg {
+  margin: 4px 44px;
+  font-size: 24px;
+}
+#studentass {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#studentass img {
+  width: 30px !important;
+}
+#statestudent span {
+  background-color: #eaeaec !important;
+  border-radius: 6px;
+}
+#statestudent {
+  margin-left: 10px !important;
+}
+#tableassitest td {
+  padding: 7px;
+}
+.scoreofassignment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #eaeaec;
+  padding: 9px;
+  margin-top:15px;
+}

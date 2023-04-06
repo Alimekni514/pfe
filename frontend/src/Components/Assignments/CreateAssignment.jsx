@@ -74,10 +74,11 @@ function CreateAssignment({ t }) {
           }
         )
           .then((res) => res.json())
-          .then((data) => {
+          .then(async(data) => {
 
-          setassignment(data)
-          navigate(`/class/${classid}/assignment/${data.id}`)}
+           await setassignment(data)
+          navigate(`/class/${classid}/assignment/${data.id}`)
+        }
             )
           .catch((err) => console.log(err));
       } else {

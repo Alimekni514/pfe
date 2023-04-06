@@ -1,0 +1,111 @@
+:root {
+    --gradient-1:  linear-gradient(135deg, #FEC460 0%, #ED853C 100%);
+    --gradient-2: linear-gradient(to right, #1d976c, #93f9b9);
+    --gradient-3: linear-gradient(to right, #8e2de2, #4a00e0);
+    --gradient-4: linear-gradient(to right, #00c6fb, #005bea);
+  }
+
+
+.createclass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 1px rgba(54, 60, 80, 0.04), 0px 1px 4px rgba(54, 60, 80, 0.14);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 23px;
+    border: none;
+    cursor: pointer;
+    width:350px;
+}
+.createclass svg {
+    font-size: 35px;
+}
+.classessection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:20px;
+
+}
+
+.clist-card {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width:20%;
+    color:#fff;
+    padding:10px;
+    border-radius:10px;
+    text-decoration: none;
+    padding: 15px 10px;
+
+}
+.iconclass {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    margin-right:10px;
+}
+.iconclass svg {
+    font-size:25px;
+
+}
+.contentclass {
+    overflow: hidden;
+}
+.titleclass {
+    text-decoration: none;
+    font-size:18px;
+    font-weight: bold;
+
+
+}
+.statsclass {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+   
+}
+.statsclass span {
+    color:#fff;
+}
+.titleclasspage {
+    font-size:30px;
+    margin-bottom: 30px;
+}
+.formclass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
+.formclass label  {
+    display:block;
+    margin:10px 0px;
+}
+.formclass input {
+        margin:10px 0px;
+}
+.formclass button {
+    color:white;
+    background-color: #F64F64;
+    padding:6px;
+    outline:none;
+    border:none;
+    margin-top:5px;
+    border-radius:3px;
+}
+.titlecreateclass {
+    padding:10px
+}
+.loadingcreationclass {
+    color:#ececec;
+    background-color:#ddd;
+
+}

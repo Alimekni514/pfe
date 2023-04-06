@@ -23,17 +23,22 @@ import CreateAssignment from "../Components/Assignments/CreateAssignment";
 import People from "../pages/People";
 import SkeletonNewScore from "../Components/Assignments/SkeletonNewScore";
 import EditCreateAssignment from "../Components/Assignments/EditCreateAssignment";
+import ClassPage from "../pages/ClassPage";
+import ClassroomAdmin from "../Components/class/ClassroomAdmin";
+import ClassContext from "../contexts/ClassContext";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
   const [user, setuser] = useState(null);
   const [assignment, setassignment] = useState(null);
+  const [classroom,setclassroom]=useState(null);
 
   return (
     <AuthProvider authType={"localstorage"} authName={"_auth"}>
       <AdminContext.Provider value={{ admin, setadmin }}>
         <UserContext.Provider value={{ user, setuser }}>
           <Assignment.Provider value={{ assignment, setassignment }}>
+            <ClassContext.Provider value={{classroom,setclassroom}}>
             <Router>
               {/* {<WrapperComponent><SidebarAdmin/></WrapperComponent>} */}
 
@@ -58,11 +63,14 @@ function MainRouter() {
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/navbar" element={<Navigation />} />
                 <Route path="/assignment" element={<CreateAssignment />} />
+                <Route path="/class" element={<ClassPage/>}/>
+                <Route path="/class/:classid" element={<ClassroomAdmin/>}/>
                 <Route path="/class/:classid/assignment/:assignmentId" element={<SkeletonNewScore/>}/>
                 <Route path="/class/:classid/assignment/:assignmentId/edit" element={<EditCreateAssignment/>}/>
                 <Route path="/people" element={<People />} />
               </Routes>
             </Router>
+            </ClassContext.Provider>
           </Assignment.Provider>
         </UserContext.Provider>
       </AdminContext.Provider>

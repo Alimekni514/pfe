@@ -80,15 +80,17 @@ function AddScoreModal({
                 <GiMusicalScore />
                 <h5 onClick={() => setscoreid(score.id)}>{score.title}</h5>
               </div>
-              <button
+  
+            </>
+          ))
+          }
+      </div>
+      <button
                 className="choosebtn"
                 onClick={() => setModalIsOpen(false)}
               >
                 Choose
               </button>
-            </>
-          ))}
-      </div>
     </Modal>
   );
 }

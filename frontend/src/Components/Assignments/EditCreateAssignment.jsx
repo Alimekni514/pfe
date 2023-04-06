@@ -84,8 +84,8 @@ function EditCreateAssignment() {
           }),
         })
           .then((res) => res.json())
-          .then((data) => {
-            setassignment(data);
+          .then(async (data) => {
+            await setassignment(data);
             navigate(`/class/${classid}/assignment/${data.id}`);
           })
           .catch((err) => console.log(err));
@@ -104,8 +104,8 @@ function EditCreateAssignment() {
           }),
         })
           .then((res) => res.json())
-          .then((data) => {
-            setassignment(data);
+          .then(async (data) => {
+            await setassignment(data);
             navigate(`/class/${classid}/assignment/${data.id}`);
           })
           .catch((err) => console.log(err));
@@ -132,8 +132,8 @@ function EditCreateAssignment() {
         }),
       })
         .then((res) => res.json())
-        .then((data) => {
-          setassignment(data);
+        .then(async (data) => {
+          await setassignment(data);
           navigate(`/class/${classid}/assignment/${data.id}`);
         })
         .catch((err) => console.log(err));
@@ -154,8 +154,8 @@ function EditCreateAssignment() {
         }),
       })
         .then((res) => res.json())
-        .then((data) => {
-          setassignment(data);
+        .then(async (data) => {
+          await setassignment(data);
           navigate(`/class/${classid}/assignment/${data.id}`);
         })
         .catch((err) => console.log(err));
