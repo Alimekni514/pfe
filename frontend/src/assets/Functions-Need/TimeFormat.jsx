@@ -36,7 +36,6 @@ const timefunction=(dateString)=> {
     }
     // Format the date string in the desired format
     const formattedDateString = `${month} ${dayOfMonth}${suffix}, ${hour}:${minute.toString().padStart(2, '0')} ${ampm}`;
-    console.log(formattedDateString);
     return formattedDateString
         }
         export {timefunction};

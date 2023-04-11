@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { IoMdClose } from "react-icons/io";
 import { GiMusicalScore } from "react-icons/gi";
-function AddScoreModal({
+function AddScoreModalWriting({
   modalIsOpen,
   customStyles,
   token,
@@ -10,13 +10,13 @@ function AddScoreModal({
   scores,
   setscores,
   scoreid,
-  setscoreid,
-}) {
+  setscoreid
+}
+) {
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
-
   //use Effect
   useEffect(() => {
     //fetch the user's scores
@@ -43,14 +43,6 @@ function AddScoreModal({
   const handleCloseModal = () => {
     setModalIsOpen(false);
   };
-  const toggleScoreSelection = (scoreId) => {
-    if (scoreid.includes(scoreId)) {
-      setscoreid(scoreid.filter((id) => id !== scoreId));
-    } else {
-      setscoreid([...scoreid, scoreId]);
-    }
-  };
-
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -85,9 +77,7 @@ function AddScoreModal({
                 }
               >
                 <GiMusicalScore />
-                <h5 onClick={() => toggleScoreSelection(score.id)}>
-                  {score.title}
-                </h5>
+                <h5 onClick={() => setscoreid(score.id)}>{score.title}</h5>
               </div>
             </>
           ))}
@@ -99,4 +89,4 @@ function AddScoreModal({
   );
 }
 
-export default AddScoreModal;
+export default AddScoreModalWriting;

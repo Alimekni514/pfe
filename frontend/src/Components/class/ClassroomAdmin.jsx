@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import React, { useState, useContext, useEffect } from "react";
 import "../../Css/Class/classroom.css";
 import Stream from "../class/Stream";
-import Assignment from "../class/Assignment";
 import People from "../class/People";
 import Setting from "../class/Setting";
 import ClassContext from "../../contexts/ClassContext";
+import AssignmentCo from "./AssignmentCo";
 const token = import.meta.env.VITE_ADMIN_TOKEN;
 function ClassroomAdmin() {
   const { classid } = useParams();
@@ -82,7 +82,7 @@ function ClassroomAdmin() {
         <div className="menu-item-selected">
           {selectedMenuItem === "" && <Stream />}
           {selectedMenuItem === "Stream" && <Stream token={token} />}
-          {selectedMenuItem === "Assignments" && <Assignment token={token} />}
+          {selectedMenuItem === "Assignments" && <AssignmentCo token={token} />}
           {selectedMenuItem === "Reviews" && <Reviews token={token} />}
           {selectedMenuItem === "People" && <People token={token} />}
           {selectedMenuItem === "Setting" && <Setting token={token} />}

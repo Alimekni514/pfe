@@ -11,7 +11,9 @@ import { GiMusicalScore } from "react-icons/gi";
 import AddScoreModal from "./AddScoreModal";
 import { GrFormAdd } from "react-icons/gr";
 import Assignment from "../../contexts/Assignment";
+import AddScoreModalWriting from "./AddScoreModalWriting";
 import Modal from "react-modal";
+import { TiDeleteOutline } from "react-icons/ti";
 const token =
   "739dfbe59fbe2b527108bcc88c8b596f019880b5a866e8001d7e9a2607a24339867cdc962807882c3a0b40c852cce06eeddabb8d28aa1b3d5c6b72ddef3d1d46";
 const headers = {
@@ -21,28 +23,54 @@ const headers = {
 const classid = "6427fdbfa249111302240a9c";
 function EditCreateAssignment() {
   const { assignment, setassignment } = useContext(Assignment);
+
   const navigate = useNavigate();
-  const { title, creationDate, dueDate, type, id } = assignment;
+  const {
+    title,
+    creationDate,
+    dueDate,
+    id,
+    description,
+    attachments,
+    maxPoints,
+    type,
+    cover,
+  } = assignment;
   //states
   const [assignmentname, setassignmentname] = useState(title);
   const [publicationdate, setpublicationdate] = useState(
     formatDate(creationDate)
   );
   const [duedate, setduedate] = useState(formatDate(dueDate));
-  const [backgroundImage, setBackgroundImage] = useState(
-    "https://flat.io/img/illustrations/activity-cover-3.jpg"
-  );
+  const [backgroundImage, setBackgroundImage] = useState(cover);
   //state
   const [scores, setscores] = useState([]);
-  const [scoreid, setscoreid] = useState("");
   const [showOverlay, setShowOverlay] = useState(false);
   const [assignmenttype, setassignmenttype] = useState(type);
+
+  //njibou readOnly scores
+  const filteredArray1 = attachments.filter(
+    (obj) => obj.type === "flat" && obj.sharingMode === "read"
+  );
+  const scoreArray = filteredArray1.map((obj) => obj.score);
+  const [scoreidlist, setscoreidlist] = useState(scoreArray);
+  //njibou Writing score for the template or sharedWriting
+  const filteredArray2 = attachments.filter(
+    (obj) => obj.type === "flat" && obj.sharingMode === "copy"
+  );
+  const scorewritingidd = filteredArray2.map((obj) => obj.score);
+  const [scoreidwriting, setscoreidwriting] = useState(scorewritingidd[0]);
   const [addlink, setaddlink] = useState(false);
-  const [link, setlink] = useState("");
+  const [linkInput, setlinkInput] = useState("");
+  //njibou links met3na
+  const filteredArray = attachments.filter((obj) => obj.type === "link");
+  const urlArray = filteredArray.map((obj) => obj.url);
+  const [links, setlinks] = useState(urlArray);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen1, setModalIsOpen1] = useState(false);
   const [grade, setgrade] = useState("");
   const [locked, setlocked] = useState(false);
-  const [description, setdescription] = useState("");
+  const [descriptionlist, setdescription] = useState("");
 
   //functions
   function formatDate(dateString) {
@@ -52,7 +80,6 @@ function EditCreateAssignment() {
     const day = date.getDate().toString().padStart(2, "0");
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
-
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
   const handleUploadImage = (event) => {
@@ -63,73 +90,52 @@ function EditCreateAssignment() {
       setBackgroundImage(reader.result);
     };
   };
+  //add link functions
+  const addlinkfunction = (e) => {
+    e.preventDefault();
+    setlinks([...links, linkInput]);
+    setlinkInput("");
+  };
+  const handledeleteLink = (index) => {
+    setlinks((prevlinks) => prevlinks.filter((uri, i) => i !== index));
+  };
   //Handle publish
   const handlepublish = () => {
     if (assignmenttype === "newScore") {
-      const url = { type: "link", url: link };
-      const score = { type: "flat", score: scoreid };
-      if (score && url && grade) {
-        fetch(`https://api.flat.io/v2/classes/${classid}/assignments/${id}`, {
-          method: "PUT",
-          headers: headers,
-          body: JSON.stringify({
-            type: assignmenttype,
-            title: assignmentname,
-            description: description,
-            maxPoints: Number(grade),
-            scheduledDate: new Date(publicationdate),
-            dueDate: new Date(duedate),
-            cover: backgroundImage,
-            attachments: [url, score],
-          }),
-        })
-          .then((res) => res.json())
-          .then(async (data) => {
-            await setassignment(data);
-            navigate(`/class/${classid}/assignment/${data.id}`);
-          })
-          .catch((err) => console.log(err));
-      } else {
-        fetch(`https://api.flat.io/v2/classes/${classid}/assignments/${id}`, {
-          method: "PUT",
-          headers: headers,
-          body: JSON.stringify({
-            type: assignmenttype,
-            title: assignmentname,
-            description: description,
-            scheduledDate: new Date(publicationdate),
-            dueDate: new Date(duedate),
-            maxPoints: Number(grade),
-            cover: backgroundImage,
-          }),
-        })
-          .then((res) => res.json())
-          .then(async (data) => {
-            await setassignment(data);
-            navigate(`/class/${classid}/assignment/${data.id}`);
-          })
-          .catch((err) => console.log(err));
-      }
-    } else if (assignmenttype === "scoreTemplate") {
-      const score = {
-        type: "flat",
-        score: scoreid,
-        sharingMode: "copy",
-        lockScoreTemplate: true,
+      const linkObjects = links.map((link) => {
+        return { type: "link", url: link };
+      });
+      const scoreObjects = scoreidlist.map((score) => {
+        return { type: "flat", score: score };
+      });
+      const assignment = {
+        type: assignmenttype,
+        title: assignmentname,
+        description: description,
+        maxPoints: Number(grade),
+        scheduledDate: new Date(publicationdate),
+        dueDate: new Date(duedate),
+        cover: backgroundImage,
+        attachments: [...linkObjects, ...scoreObjects],
       };
+      Object.keys(assignment).forEach((key) => {
+        if (!assignment[key]) {
+          console.log(assignment[key]);
+          delete assignment[key];
+        }
+      });
+      assignment.attachments = assignment.attachments.filter((attachment) => {
+        if (attachment.type === "link") {
+          return !!attachment.url;
+        } else if (attachment.type === "flat") {
+          return !!attachment.score;
+        }
+      });
+
       fetch(`https://api.flat.io/v2/classes/${classid}/assignments/${id}`, {
         method: "PUT",
         headers: headers,
-        body: JSON.stringify({
-          type: assignmenttype,
-          title: assignmentname,
-          description: description,
-          maxPoints: Number(grade),
-          scheduledDate: new Date(publicationdate),
-          dueDate: new Date(duedate),
-          cover: backgroundImage,
-          attachments: [score],
-        }),
+        body: JSON.stringify(assignment),
       })
         .then((res) => res.json())
         .then(async (data) => {
@@ -137,25 +143,54 @@ function EditCreateAssignment() {
           navigate(`/class/${classid}/assignment/${data.id}`);
         })
         .catch((err) => console.log(err));
-    } else if (assignmenttype === "sharedWriting") {
-      const score = { type: "flat", score: scoreid, sharingMode: "write" };
+    } else if (
+      assignmenttype === "scoreTemplate" ||
+      assignmenttype === "sharedWriting"
+    ) {
+      const linkObjects = links.map((link) => {
+        return { type: "link", url: link };
+      });
+      const scoreObjects = scoreidlist.map((score) => {
+        return { type: "flat", score: score };
+      });
+      const score = {
+        type: "flat",
+        score: scoreidwriting,
+        sharingMode: "copy",
+        lockScoreTemplate: true,
+      };
+      const assignment = {
+        type: assignmenttype,
+        title: assignmentname,
+        description: description,
+        maxPoints: Number(grade),
+        scheduledDate: new Date(publicationdate),
+        dueDate: new Date(duedate),
+        cover: backgroundImage,
+        attachments: [...linkObjects, ...scoreObjects, score],
+      };
+      Object.keys(assignment).forEach((key) => {
+        if (!assignment[key]) {
+          console.log(assignment[key]);
+          delete assignment[key];
+        }
+      });
+      assignment.attachments = assignment.attachments.filter((attachment) => {
+        if (attachment.type === "link") {
+          return !!attachment.url;
+        } else if (attachment.type === "flat") {
+          return !!attachment.score;
+        }
+      });
+
       fetch(`https://api.flat.io/v2/classes/${classid}/assignments/${id}`, {
         method: "PUT",
         headers: headers,
-        body: JSON.stringify({
-          type: assignmenttype,
-          title: assignmentname,
-          description: description,
-          maxPoints: Number(grade),
-          scheduledDate: new Date(publicationdate),
-          dueDate: new Date(duedate),
-          cover: backgroundImage,
-          attachments: [score],
-        }),
+        body: JSON.stringify(assignment),
       })
         .then((res) => res.json())
-        .then(async (data) => {
-          await setassignment(data);
+        .then((data) => {
+          setassignment(data);
           navigate(`/class/${classid}/assignment/${data.id}`);
         })
         .catch((err) => console.log(err));
@@ -164,6 +199,9 @@ function EditCreateAssignment() {
   //Add Score Modal function
   const handleOpenModal = () => {
     setModalIsOpen(true);
+  };
+  const handleOpenModal1 = () => {
+    setModalIsOpen1(true);
   };
   //style for the Modal
   const customStyles1 = {
@@ -314,15 +352,25 @@ function EditCreateAssignment() {
           </div>
         </div>
         {/* New Score  */}
-        {assignmenttype === "newScore" && (
+        {assignmenttype && (
           <div className="instructionsNewScore">
             <h6>Instructions</h6>
 
             <textarea
-              value={description}
+              value={descriptionlist}
               onChange={(e) => setdescription(e.target.value)}
               placeholder="(Optional) Here you can insert your instructions.You cn also attach files,links,or read-only scores"
             ></textarea>
+            <ul className="linksul">
+              {links.map((link, index) => (
+                <li key={index}>
+                  {link}{" "}
+                  <button onClick={() => handledeleteLink(index)}>
+                    <TiDeleteOutline />
+                  </button>
+                </li>
+              ))}
+            </ul>
             <div className="buttons">
               <div style={{ position: "relative" }}>
                 <button
@@ -341,10 +389,13 @@ function EditCreateAssignment() {
                     <input
                       type="url"
                       placeholder="https://example.com"
-                      value={link}
-                      onChange={(e) => setlink(e.target.value)}
+                      value={linkInput}
+                      onChange={(e) => setlinkInput(e.target.value)}
                     />
-                    <button id="addlink1"> Add link</button>
+                    <button id="addlink1" onClick={(e) => addlinkfunction(e)}>
+                      {" "}
+                      Add link
+                    </button>
                   </div>
                 )}
               </div>
@@ -362,7 +413,7 @@ function EditCreateAssignment() {
                 <button
                   className="choosebtn"
                   id="choosebtn"
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setModalIsOpen1(true)}
                 >
                   {" "}
                   <GrFormAdd /> Add Work Scores
@@ -382,7 +433,7 @@ function EditCreateAssignment() {
                 <button
                   className="choosebtn"
                   id="choosebtn"
-                  onClick={() => setModalIsOpen(true)}
+                  onClick={() => setModalIsOpen1(true)}
                 >
                   {" "}
                   <GrFormAdd /> Add Work Scores
@@ -430,9 +481,19 @@ function EditCreateAssignment() {
           token={token}
           setModalIsOpen={setModalIsOpen}
           scores={scores}
-          scoreid={scoreid}
+          scoreid={scoreidlist}
           setscores={setscores}
-          setscoreid={setscoreid}
+          setscoreid={setscoreidlist}
+        />
+        <AddScoreModalWriting
+          modalIsOpen={modalIsOpen1}
+          customStyles={customStyles1}
+          token={token}
+          setModalIsOpen={setModalIsOpen1}
+          scores={scores}
+          scoreid={scoreidwriting}
+          setscores={setscores}
+          setscoreid={setscoreidwriting}
         />
       </div>
     </>
