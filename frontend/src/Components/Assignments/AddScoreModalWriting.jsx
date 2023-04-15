@@ -71,7 +71,7 @@ function AddScoreModalWriting({
             <>
               <div
                 className={
-                  scoreid.includes(score.id)
+                  scoreid?.includes(score.id)
                     ? `selectedscore scoreassignment`
                     : `notselectedscore scoreassignment`
                 }

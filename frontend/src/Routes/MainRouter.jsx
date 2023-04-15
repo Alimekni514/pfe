@@ -26,6 +26,7 @@ import EditCreateAssignment from "../Components/Assignments/EditCreateAssignment
 import ClassPage from "../pages/ClassPage";
 import ClassroomAdmin from "../Components/class/ClassroomAdmin";
 import ClassContext from "../contexts/ClassContext";
+import ViewPageTeacher from "../Components/Assignments/ViewPageTeacher";
 
 function MainRouter() {
   const [admin, setadmin] = useState(null);
@@ -62,11 +63,12 @@ function MainRouter() {
                 <Route path="/collection/:id" element={<CollectionFolder />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/navbar" element={<Navigation />} />
-                <Route path="/assignment" element={<CreateAssignment />} />
                 <Route path="/class" element={<ClassPage/>}/>
                 <Route path="/class/:classid" element={<ClassroomAdmin/>}/>
+                <Route path="/class/:classid/assignment" element={<CreateAssignment/>}/>
                 <Route path="/class/:classid/assignment/:assignmentId" element={<SkeletonNewScore/>}/>
                 <Route path="/class/:classid/assignment/:assignmentId/edit" element={<EditCreateAssignment/>}/>
+                <Route path="/view" element={<ViewPageTeacher/>}/>
                 <Route path="/people" element={<People />} />
               </Routes>
             </Router>

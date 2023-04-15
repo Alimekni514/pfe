@@ -38,7 +38,7 @@ function ClassroomAdmin() {
               ></path>
             </svg>
           </div>
-          <h4>{classroom.name}</h4>
+          <h4>{classroom?.name ?? ""}</h4>
         </div>
         <nav>
           <ul className="classroomul">

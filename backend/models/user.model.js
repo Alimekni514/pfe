@@ -124,14 +124,12 @@ exports.login = (email, password) => {
                 let token = jwt.sign({ user: user.username }, privatekey, {
                   expiresIn: "20m",
                 });
-
                 mongoose.disconnect();
                 const paydata = {
                   token: token,
                   expiresIn: "20",
                   datauser: {
                     user: user.username,
-                    tata: "tata",
                     role: user.role,
                   },
                 };

@@ -99,8 +99,8 @@ function People({ token }) {
     e.preventDefault();
     const { id } = item;
     //to Delete the row of the user
-    e.target.parentNode.parentNode.parentNode.remove();
-    console.log(e.target.parentNode.parentNode);
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+    
     // Handle delete logic
     fetch(`https://api.flat.io/v2/classes/${classid}/users/${id}`, {
       method: "DELETE",

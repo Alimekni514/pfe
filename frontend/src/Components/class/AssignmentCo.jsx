@@ -7,6 +7,12 @@ import ClassContext from "../../contexts/ClassContext";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
+import {
+  fetchStudentData,
+  fetchStudentSubmission,
+  getStudentSubmissionsWithUserData,
+  getSubmissionStateCounts
+} from "../../assets/Functions-Need/SubmissionAdmin";
 import "react-toastify/dist/ReactToastify.css";
 import {
   AiOutlineEdit,
@@ -31,6 +37,7 @@ function AssignmentCo({ token }) {
   const [zeroassignment, setzeroassignment] = useState(false);
   const [typeassignment, settypeassignment] = useState("");
   const [activeMenu, setActiveMenu] = useState(null);
+  const [activeMenuArchived,setactiveMenuArchived]=useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -38,6 +45,11 @@ function AssignmentCo({ token }) {
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
   }, []);
+  useEffect(()=> {
+    const handleClick=()=>setactiveMenuArchived(null);
+    document.addEventListener("click",handleClick);
+    return ()=>document.removeEventListener("click",handleClick);
+  })
   //useEffect for fetching the assignment
   useEffect(() => {
     //get all the assignments
@@ -167,12 +179,21 @@ function AssignmentCo({ token }) {
       return true;
     }
   };
-  function countStates(assignment) {
-    let startedCount = assignment.submissionsCount;
-    let turnedCount = assignment.submissionsSentCount;
-    let returnedCount = assignment.submissionsReturnedCount;
-    const totalCount = classroom.studentsGroup.usersCount;
-    let notstartedCount = totalCount - (startedCount + turnedCount);
+   function countStates(assignment) { 
+    const fetchData = async () => {
+      const listStudent = await getStudentSubmissionsWithUserData(
+        token,
+        classid,
+        assignment.id
+      );
+
+      let resultobject=getSubmissionStateCounts(listStudent);
+      console.log(resultobject)
+    let startedCount = resultobject.created;
+    let turnedCount = resultobject.turnedIn;
+    let returnedCount = resultobject.returned;
+    let notstartedCount = resultobject.notStarted;
+    let totalCount=startedCount+turnedCount+returnedCount+notstartedCount;
     //calculate the pourcentage
     const startedPercentage = (startedCount / totalCount) * 100;
     const turnedPercentage = (turnedCount / totalCount) * 100;
@@ -196,12 +217,18 @@ function AssignmentCo({ token }) {
         notstartedPercentage,
       },
     ];
+    }
+  fetchData();
   }
   //functions for the assignment
   const handleMenuToggle = (e, item) => {
     e.stopPropagation();
     setActiveMenu(item.title);
   };
+  const handleMenuToggleArchived=(e,item)=> {
+    e.stopPropagation();
+    setactiveMenuArchived(item.title);
+  }
   const handleEdit = (e, item) => {
     e.preventDefault();
     setassignment(item);
@@ -277,6 +304,36 @@ function AssignmentCo({ token }) {
       })
       .catch((err) => console.log(err));
   };
+  //handle navigate assignment
+  const handlenavigateassignment = (e, item) => {
+    e.preventDefault();
+    setassignment(item);
+    navigate(`/class/${classid}/assignment/${item.id}`);
+  };
+  //handle unarchive 
+  const handleunarchive=async(e,item)=> {
+    await fetch(`https://api.flat.io/v2/classes/${classid}/assignments/${item.id}/archive`, {
+      method:"DELETE",
+      headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${token}`
+      }
+    }).then((res)=>res.json())
+    .catch(err=>console.log(err));
+    await fetch(`https://api.flat.io/v2/classes/${classid}/assignments`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setassignmentsList(data);
+        setfiltredassignments(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div>
@@ -347,7 +404,7 @@ function AssignmentCo({ token }) {
             )}
           </div>
         </div>
-        <button className="createassignmentbtn">
+        <button className="createassignmentbtn" onClick={()=>navigate(`/class/${classid}/assignment`)}>
           <IoIosAddCircleOutline /> Create Assignment
         </button>
       </div>
@@ -355,11 +412,12 @@ function AssignmentCo({ token }) {
       {filtredassignments &&
         filtredassignments.map((item) => (
           <div
-            className="assignmentdiv"
+            className={`assignmentdiv ${item.state==="archived"?"archivedAssignmentdiv":""}`}
+            
             key={item.id}
-            onClick={() => countStates(item)}
+            //
           >
-            <img className="assignmentimg" src={item.cover} alt={item.title} />
+            <img className={`assignmentimg  ${item.state==="archived"?"archivedAssignment":""}`}   src={item.cover} alt={item.title}  onClick={(e) => handlenavigateassignment(e, item)} />
             <div className="headerassignment">
               <h4>{item.title}</h4>
               <div className="headerassignmentinformations">
@@ -413,6 +471,7 @@ function AssignmentCo({ token }) {
                   </>
                 )}
               </div>
+              { item.state!=="archived"&&(
               <div className="filter-button threedots">
                 <BsThreeDotsVertical
                   className="menu-icon"
@@ -435,7 +494,29 @@ function AssignmentCo({ token }) {
                     </li>
                   </div>
                 )}
-              </div>
+              </div>)
+                }
+                {
+                  item.state=="archived" && (
+                    <div className="filter-button threedots">
+                    <BsThreeDotsVertical
+                  className="menu-icon"
+                  onClick={(e) => handleMenuToggleArchived(e, item)}
+                />
+                {activeMenuArchived === item.title && (
+                  <div
+                    className={`filter-dropdown-assignment ${
+                      activeMenuArchived === item.title ? "active" : ""
+                    }`}
+                  >
+                    <li onClick={(e) => handleunarchive(e, item)}>
+                      <AiOutlineFolder className="menu-icon" /> Unarchive
+                    </li>
+                  </div>
+                )}
+                </div>
+                  )
+                }
             </div>
           </div>
         ))}

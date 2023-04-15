@@ -3,10 +3,7 @@ import Collection from "../Components/ScoreLibrary/Collection";
 import UserScore from "../Components/ScoreLibrary/UserScore";
 import Modal from "react-modal";
 import ModalInstrument from "../Components/InstrumentList/ModalInstrument";
-const token =
-  window.localStorage.getItem("flat_token_user") ??
-  import.meta.env.VITE_ADMIN_TOKEN;
-
+const token =window.localStorage.getItem("flat_token_user")??import.meta.env.VITE_ADMIN_TOKEN;
 function ScoreLibrary() {
   //states
   const [collections, setcollections] = useState([]);

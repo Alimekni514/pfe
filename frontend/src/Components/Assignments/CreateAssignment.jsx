@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
@@ -14,22 +14,19 @@ import Assignment from "../../contexts/Assignment";
 import { TiDeleteOutline } from "react-icons/ti";
 import Modal from "react-modal";
 import AddScoreModalWriting from "./AddScoreModalWriting";
-const token =
-  "739dfbe59fbe2b527108bcc88c8b596f019880b5a866e8001d7e9a2607a24339867cdc962807882c3a0b40c852cce06eeddabb8d28aa1b3d5c6b72ddef3d1d46";
+const token =window.localStorage.getItem("flat_token_teacher")??import.meta.env.VITE_ADMIN_TOKEN;
 const headers = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${token}`,
 };
-const classid = "6427fdbfa249111302240a9c";
 function CreateAssignment() {
   const navigate = useNavigate();
+  const {classid}=useParams();
   //states
   const [assignmentname, setassignmentname] = useState("");
   const [publicationdate, setpublicationdate] = useState("");
   const [duedate, setduedate] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState(
-    "https://flat.io/img/illustrations/activity-cover-3.jpg"
-  );
+  const [backgroundImage, setBackgroundImage] = useState("https://flat.io/img/illustrations/activity-cover-3.jpg");
   //state
   const [scores, setscores] = useState([]);
   const { assignment, setassignment } = useContext(Assignment);
