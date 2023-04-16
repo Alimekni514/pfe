@@ -209,7 +209,7 @@ function CreateAssignment() {
             <h6>Editing in -</h6>Changes made here will not affect assignments
             already created within other classes{" "}
           </label>
-          <input type="text" value={"esmclass"} />
+          <input type="text" value={classid} />
         </div>
         <div className="inputgroup">
           <label>

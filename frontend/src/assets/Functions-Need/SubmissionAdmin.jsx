@@ -54,17 +54,17 @@ async function fetchStudentData(classid,token) {
   
     return studentSubmissions;
   }
-  function getSubmissionStateCounts(submissions) {
+ function getSubmissionStateCounts(submissions) {
     let created = 0;
     let turnedIn = 0;
     let returned = 0;
     let notStarted = 0;
   
     for (const submission of submissions) {
-      if (submission.submission === null) {
-        notStarted++;
+      if (submission === []) {
+        notStarted=5;
       } else {
-        switch (submission.submission.state) {
+        switch (submission.state) {
           case "created":
             created++;
             break;
@@ -74,11 +74,36 @@ async function fetchStudentData(classid,token) {
           case "returned":
             returned++;
             break;
+          default:
+            notStarted++;
         }
       }
     }
-  
-    return { created, turnedIn, returned, notStarted };
+      notStarted=5 - (created + turnedIn + returned);
+       //calculate the pourcentage
+       const startedPercentage = (created / 5) * 100;
+       const turnedPercentage = (turnedIn / 5) * 100;
+       const returnedPercentage = (returned / 5) * 100;
+       const notstartedPercentage = (notStarted / 5) * 100;
+
+    return  [
+      {
+        created,
+        startedPercentage,
+      },
+      {
+        turnedIn,
+        turnedPercentage,
+      },
+      {
+        returned,
+        returnedPercentage,
+      },
+      {
+        notStarted,
+        notstartedPercentage,
+      },
+    ];
   }
   
   export {fetchStudentData,fetchStudentSubmission,getStudentSubmissionsWithUserData,getSubmissionStateCounts}
