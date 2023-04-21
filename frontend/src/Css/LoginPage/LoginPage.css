@@ -37,7 +37,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
 }
 .dont {
   display: block;
@@ -75,11 +74,11 @@
 }
 
 .violonwoman {
-  width:50%;
+  width: 50%;
 }
 
 .signin-container form {
-  width:100%;
+  width: 100%;
 }
 .bodysignin {
   display: flex;
@@ -89,41 +88,43 @@
 }
 .bodysignin .solam {
   position: absolute;
-    right: 50%;
-    top: 36px;
-    width: 210px;
+  right: 50%;
+  top: 36px;
+  width: 210px;
 }
 .signinkol nav {
   display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    color: #000;
-    height: 70px;
-    padding: 0 20px;
-    position: relative;
-    position: fixed;
-    top: 0;
-    right: 3%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  height: 70px;
+  padding: 0 20px;
+  position: relative;
+  position: fixed;
+  top: 0;
+  right: 3%;
 }
-.signinkol  nav img {
+.signinkol nav img {
   display: none;
 }
 .signinkol {
   position: relative;
 }
 .formsignin {
-  width:40%;
+  width: 40%;
   align-self: flex-start;
-  margin-top:80px
+  margin-top: 80px;
 }
 .form-groupsignin h1 {
-  color:#333;
-  margin:0px 0px 20px;
+  color: #333;
+  margin: 0px 0px 20px;
   width: fit-content;
 }
 .signintitle {
   position: relative;
+  font-size: 32px !important;
+  font-weight: bold;
 }
 .signintitle img {
   position: absolute;
@@ -133,7 +134,7 @@
   right: -53px;
 }
 .signinkol #password {
-  width:208% !important;
+  width: 208% !important;
 }
 #signinbtn {
   display: block;

@@ -348,7 +348,7 @@ function UserScore({ userscore, setuserscores, token, id, collections }) {
           )}
           {dropdownVisible2 && (
             <div
-              className="dropdown-menu"
+              className="dropdown-menu tt"
               style={{
                 position: "absolute",
                 top: "calc(100% + 21px)",
@@ -414,6 +414,7 @@ function UserScore({ userscore, setuserscores, token, id, collections }) {
                   marginTop: "5px",
                 }}
                 onClick={handleaddscore}
+                className="bb"
               >
                 Add
               </button>
@@ -421,7 +422,7 @@ function UserScore({ userscore, setuserscores, token, id, collections }) {
           )}
           {dropdownVisible3 && (
             <div
-              className="dropdown-menu"
+              className="dropdown-menu tt"
               style={{
                 position: "absolute",
                 top: "calc(100% + 21px)",
@@ -485,6 +486,7 @@ function UserScore({ userscore, setuserscores, token, id, collections }) {
                   marginTop: "5px",
                 }}
                 onClick={handleaddscore1}
+                className="bb"
               >
                 Add
               </button>

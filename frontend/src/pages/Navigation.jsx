@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import "../Css/NavBar/Navigation.css";
-import conservatoire from "../assets/Images/logoconservatoire.png"
-import { FaRegUser} from "react-icons/fa";
+import conservatoire from "../assets/Images/logoconservatoire.png";
+import { FaRegUser } from "react-icons/fa";
 const Navigation = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <nav className="nav">
-       <img src={conservatoire} alt="logo" style={{width:"120px"}}/>
+      <img src={conservatoire} alt="logo" style={{ width: "120px" }} />
       <ul className={`nav-menu ${isNavOpen ? "nav-menu-open" : ""}`}>
         <li className="nav-item">
           <a href="/" className="nav-link">
@@ -35,13 +35,14 @@ const Navigation = () => {
           </a>
         </li>
       </ul>
-      <div>
-       
-        <button className="signupbtn" onClick={()=>window.location.href="/signup"}>
+      <div className="pqpq">
+        <button
+          className="signupbtn"
+          onClick={() => (window.location.href = "/signup")}
+        >
           Sign Up
         </button>
-        <FaRegUser/>
-
+        <FaRegUser />
       </div>
     </nav>
   );

@@ -186,6 +186,9 @@ nav {
   border: none;
   padding: 8px;
   border-radius: 6px;
+  display: flex!important;
+  gap: 8px !important;
+  font-size: 15px!important;
 }
 .assignmentdiv {
   display: flex;
@@ -406,6 +409,7 @@ nav {
   color: white;
   background-color: #f64f64;
   border-radius: 4px;
+  font-size:16px!important;
 }
 .headerPeopleClass input {
   width: 250px;
@@ -414,57 +418,57 @@ nav {
   margin-top: 20px;
 }
 .classdetails h4 {
-  color:#666;
-  font-size: 16px;;
+  color: #666;
+  font-size: 16px;
 }
 .classdetails {
   display: flex;
-  gap:20px;
-  margin:20px 5px;
+  gap: 20px;
+  margin: 20px 5px;
 }
 .classdetails div {
   display: flex;
-  flex-direction: column; 
-  width:300px;
+  flex-direction: column;
+  width: 300px;
 }
 .classdetails div input {
-  border-radius:5px;
+  border-radius: 5px;
 }
 .classdetails div label {
-  font-size:16px;
+  font-size: 16px;
   display: block;
-  margin-bottom:10px;;
+  margin-bottom: 10px;
 }
-.buttonsSettingClass button:first-of-type{
-  padding:6px 19px;
-  border-radius:3px;
-  color:#11844b;
+.buttonsSettingClass button:first-of-type {
+  padding: 6px 19px;
+  border-radius: 3px;
+  color: #11844b;
   background-color: #fff;
   outline: none;
   border: 1px solid #11844b;
   font-size: 17px;
 }
 .deletebtnclass {
-  padding:6px 19px;
-  border-radius:3px;
-  color:#e0548e;
+  padding: 6px 19px;
+  border-radius: 3px;
+  color: #e0548e;
   background-color: #fff;
   outline: none;
   border: 1px solid #e0548e;
   display: flex;
   align-items: center;
-  gap:10px;
+  gap: 10px;
   font-size: 17px;
 }
 .buttonsSettingClass {
   display: flex;
-  gap:20px;
-  margin:40px 5px;
+  gap: 20px;
+  margin: 40px 5px;
 }
 .savechangeclass {
-  padding:6px 19px;
-  border-radius:3px;
-  color:#fff;
+  padding: 6px 19px;
+  border-radius: 3px;
+  color: #fff;
   background-color: #f64f64;
   outline: none;
   border: 1px solid #f64f64;
@@ -474,58 +478,59 @@ nav {
   height: 450px;
 }
 .buttonsExportSubmission {
- width: fit-content;
- margin:28px auto;
- display: flex;
- align-items: center;
- gap:20px;
+  width: fit-content;
+  margin: 28px auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-#mididownload,#pngdownload {
-  color:#fff;
-  padding:3px 18px;
+#mididownload,
+#pngdownload {
+  color: #fff;
+  padding: 3px 18px;
   background-color: #f64f64;
   outline: none;
   border: none;
   border-radius: 5px;
-} 
-.contentSubmissionReview{
-  display: flex;
-    align-items: center;
-    justify-content: flex-start;
 }
-.informationsUserSubmission span{
-display: block;
-padding: 7px 18px 7px 60px;
-font-size: 17px;
-border: 1px solid #ccc;
-color: #000;
-border-radius: 5px;}
+.contentSubmissionReview {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.informationsUserSubmission span {
+  display: block;
+  padding: 7px 18px 7px 60px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  color: #000;
+  border-radius: 5px;
+}
 #userSubmitted {
- display: flex;
- position: relative;
+  display: flex;
+  position: relative;
 }
 #userSubmitted img {
   position: absolute;
-  top:17px;
-  left:15px;
+  top: 17px;
+  left: 15px;
 }
 .submissionState p {
   display: flex;
-    align-items: center;
-    font-size:14px;
-    gap:3px;
-    padding:5px 10px;
-      position: relative;
+  align-items: center;
+  font-size: 14px;
+  gap: 3px;
+  padding: 5px 10px;
+  position: relative;
 }
 
 .submissionstate p h4 {
   background-color: #f64f64;
-
 }
 #submissiondate {
-  color:#777;
-  font-size:14px;
-  margin-left:9px;
+  color: #777;
+  font-size: 14px;
+  margin-left: 9px;
 }
 .attachemntsSubmission {
   color: #000;
@@ -537,16 +542,15 @@ border-radius: 5px;}
   border-radius: 5px;
   margin: 20px 5px;
 }
-.titleattachemnt{
-  padding:10px 5px 0px;
-  font-size:18px;
-  color:#000;
-
+.titleattachemnt {
+  padding: 10px 5px 0px;
+  font-size: 18px;
+  color: #000;
 }
 .comments {
   height: 200px;
-    overflow-y: scroll;
-    width: 30%;
+  overflow-y: scroll;
+  width: 30%;
 }
 /* Hide the default scrollbar */
 .comments::-webkit-scrollbar {
@@ -565,9 +569,9 @@ border-radius: 5px;}
 }
 .comments div {
   display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 8px 0px;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0px;
 }
 .comments .headercomment {
   display: flex;
@@ -577,14 +581,14 @@ border-radius: 5px;}
 }
 .headercomment span {
   display: block;
-    margin-top: 0px;
-    font-size: 12px;
-    margin: 4px 0px;
+  margin-top: 0px;
+  font-size: 12px;
+  margin: 4px 0px;
 }
 #savechaangecomment {
   background-color: #f64f64;
   color: #fff;
-  padding:2px 20px;
+  padding: 2px 20px;
   outline: none;
   border: none;
   border-radius: 3px;
@@ -597,27 +601,26 @@ border-radius: 5px;}
   border-radius: 5px;
   font-size: 16px;
   line-height: 1.4;
-  resize: vertical; 
+  resize: vertical;
 }
 #postCommentSubmission:focus {
   border-color: #f64f64;
   outline: none;
 }
 .informationsUserSubmission {
-  width:35%;
-  padding:10px 10px 0px;
+  width: 35%;
+  padding: 10px 10px 0px;
 }
 #postCommentSubmission {
-  height:130px;
-  width:80%;
- 
+  height: 130px;
+  width: 80%;
 }
 .postcommentsection {
   flex: 1;
-  padding:20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
 .postcommentsection button {
   width: fit-content;
@@ -627,12 +630,11 @@ border-radius: 5px;}
   border: none;
   padding: 2px 24px;
   border-radius: 4px;
-  margin:0px 0px 0px auto;
-  transform:translateX(-108%);
+  margin: 0px 0px 0px auto;
+  transform: translateX(-108%);
 }
-.archivedAssignment{
+.archivedAssignment {
   filter: grayscale(100%);
-  
 }
 .archivedAssignmentdiv {
   position: relative;
@@ -654,15 +656,15 @@ border-radius: 5px;}
 }
 #textareamsg {
   margin: 6px 0 0;
-    width: 100%;
-    font-size: 14px;
-    color: var(--f-ink);
-    border: 0;
-    line-height: 16px;
-    letter-spacing: .3px;
-    padding: 0;
-    resize: none;
-    outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: var(--f-ink);
+  border: 0;
+  line-height: 16px;
+  letter-spacing: 0.3px;
+  padding: 0;
+  resize: none;
+  outline: none;
 }
 .bodypost {
   display: grid;
@@ -672,7 +674,7 @@ border-radius: 5px;}
   padding: 16px;
 }
 .bodypost img {
-  width:30px;
+  width: 30px;
 }
 .headerpost {
   display: grid;
@@ -703,32 +705,35 @@ border-radius: 5px;}
   z-index: 4;
   margin: 0 -16px -16px 0;
 }
-.buttonsfooter button{
+.buttonsfooter button {
   display: flex;
-  align-items: center;
-  background: #fff;
-  border: 1px solid #cfd8dc;
-  border-radius: 4px;
-  padding: 6px 12px;
-  margin: 0 16px 16px 0;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #cfd8dc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin: 0 16px 16px 0;
+    font-size: 14px !important;
+    gap: 5px !important;
 }
 .Postpost {
   display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 4px;
-    margin-top:40px;
-    margin-bottom: 32px;
-    box-shadow: 0px 0px 0px 1px rgba(54, 60, 80, 0.04), 0px 1px 4px rgba(54, 60, 80, 0.14);;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-top: 40px;
+  margin-bottom: 32px;
+  box-shadow: 0px 0px 0px 1px rgba(54, 60, 80, 0.04),
+    0px 1px 4px rgba(54, 60, 80, 0.14);
 }
 .post-card {
   padding: 20px;
-    background: white;
-    border-radius: 4px;
-    margin-bottom: 32px;
-    border: 1px solid #e7e8ec;
-    box-shadow: 0 1px 1px #e7e8ec33;
-    position: relative;
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 32px;
+  border: 1px solid #e7e8ec;
+  box-shadow: 0 1px 1px #e7e8ec33;
+  position: relative;
 }
 .post-card-header {
   display: flex;
@@ -738,28 +743,28 @@ border-radius: 5px;}
 }
 .post-details {
   flex: 1 1 auto;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .post-info {
   display: flex;
-    flex-direction: column;
-    margin-left: 10px;
+  flex-direction: column;
+  margin-left: 10px;
 }
 .creator-name {
   color: #2f3446;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16px;
-    margin-bottom: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  margin-bottom: 3px;
 }
 .creation-date {
   color: #646f8d;
-    font-size: 13px;
-    line-height: 16px;
-    display: block;
-    margin-top: 3px;
-    display: flex;
+  font-size: 13px;
+  line-height: 16px;
+  display: block;
+  margin-top: 3px;
+  display: flex;
 }
 .i {
   flex: 0 0 24px;
@@ -785,6 +790,184 @@ border-radius: 5px;}
   line-height: 20px;
   text-decoration: none;
   border: 1px solid #ececea;
-  border-radius: 6Px;
+  border-radius: 6px;
+}
+.add-people-class {
+  width: 500px;
+  height: 100vh;
+  background: #353b4f
+    url(https://prod.flat-cdn.com/js/img/7721508e66bbaf697145.png) no-repeat
+    center center / cover;
+}
+.containerAddPeople {
+  display: flex;
+}
+.fcards-horizontal-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -24px -24px 0;
+  flex-direction: column;
+}
+.fcard-horizontal {
+  background: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0 24px 16px 0;
+  flex: 0 0 calc(50% - 24px);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  pointer-events: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 0px 1px rgba(54, 60, 80, 0.04),
+    0px 1px 4px rgba(54, 60, 80, 0.14);
+}
+.fcard-horizontal:hover {
+  background-color: #ececea;
+}
+.fcard-horizontal p {
+  color: #666;
+  font-size: 14px;
+  margin: 8px 0px;
+}
+.fcard-horizontal svg {
+  font-size: 25px;
+}
+.addPeopleSectiona {
+  padding: 200px 90px;
+}
+.addpeopletitle {
+  display: block;
+  font-size: 26px;
+  margin: 0px auto 30px auto;
+  width: fit-content;
+}
+.info-card h5 {
+  font-size: 20px;
+}
+.userDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-top: 1px solid #eaeaec;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 7px 32px;
+  cursor: pointer;
+  gap:30px;
+}
+.userDiv:first-of-type {
+  border-top: unset;
 }
 
+.infoUserOr {
+  display: flex;
+  gap: 30px;
+}
+
+.infoUserOr img {
+  width: 32px;
+}
+
+.addExistingStudentsContainer h3 {
+  width: fit-content;
+  margin: 0px auto 30px auto;
+}
+.addExistingStudentsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+}
+.edulist {
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  margin-top: 52px;
+}
+.typeofuser {
+  background-color: #f64f64;
+  color: #fff;
+  padding: 1px 17px;
+  border-radius: 8px;
+}
+.userNamee {
+  width: 120px;
+}
+.joined {
+  color: #139758;
+}
+.searchUsersinputa {
+  width: 50%;
+  border-radius: 6px;
+}
+.footerExisting {
+  margin:15px 0px 0px;
+}
+#addpeopple{
+  color: white;
+    outline: none;
+    border: none;
+    padding: 4px 15px;
+    width: fit-content;
+    background-color: #363c50;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#backstudent {
+  outline: none;
+  color: #777;
+  border: none;
+  background-color: transparent;
+  padding: 2px 20px;
+cursor: pointer;
+}
+.showcodeContainer{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} 
+#titleshowcode span {
+  display:inline;
+  color:#666;
+  font-weight: bold;
+}
+#titleshowcode {
+  margin: 14px;
+  font-size: 16px;
+}
+.copytoClipboard {
+  display: flex;
+}
+.copytoClipboard #copyinput {
+  padding: 10px;
+  border: 1px solid #c1c5d1;
+  width: 331px;
+  border-radius: 4px;
+}
+.copytoClipboard button {
+  color: #fff;
+  background-color: rgb(246, 79, 100);
+  padding: 8px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+}
+.buttonsfooter button svg {
+  font-size: 16px;
+}
+.headerassignment h4 {
+  font-weight: bold!important;
+  font-size: 20px!important;
+}
+.tt .bb {
+  background-color: #f64f64 !important;
+  padding: 3px!important;
+    text-align: center!important;
+}

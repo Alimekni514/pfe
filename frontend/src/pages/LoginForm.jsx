@@ -7,12 +7,24 @@ import { useNavigate } from "react-router-dom";
 import AdminContext from "../contexts/AdminContext";
 import Navigation from "./Navigation";
 import UserContext from "../contexts/UserContext";
+import Badge from "../contexts/BadgeContext";
 import { useSignIn } from "react-auth-kit";
 import Swal from "sweetalert2";
 import axios from "axios";
 import womanviolon from "../assets/Images/SignIn/womanviolon.png";
 import musicsolam from "../assets/Images/SignIn/musicsolem.png";
 import saxophone from "../assets/Images/home/saxophone.png";
+import {useAuthUser} from 'react-auth-kit'
+function clickAndClose(url) {
+  // Open URL in new tab with target="_blank"
+  const newTab = window.open(url, '_blank');
+
+  // Wait for 1 second (1000 milliseconds)
+  setTimeout(() => {
+    // Close the new tab
+    newTab.close();
+  }, 2000);
+}
 
 function LoginForm() {
   const token = import.meta.env.VITE_ADMIN_TOKEN;
@@ -26,8 +38,14 @@ function LoginForm() {
   const signIn = useSignIn();
   const { admin, setadmin } = useContext(AdminContext);
   const { user, setuser } = useContext(UserContext);
+  const {badge,setbadge}=useContext(Badge);
+  const auth = useAuthUser()
   //Functions
   const navigate = useNavigate();
+  function filterById(array, email) {
+    return array.filter(obj => obj.email === email)[0];
+  }
+  
   const onsubmit = (data, event) => {
     event.preventDefault();
     axios.post("http://localhost:5000/login", data).then(async (res) => {
@@ -43,11 +61,21 @@ function LoginForm() {
         ) {
           if (res.data.datauser.role === "admin") {
             setadmin(true);
+            setbadge(true);
           } else {
             setuser(true);
-            const tokenurl = `https://api.flat.io/v2/organizations/users/${localStorage.getItem(
-              "currentUserId"
-            )}/accessToken`;
+            setbadge(true);
+         
+            const fetchUsers=await fetch(`https://api.flat.io/v2/organizations/users`, {
+              headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${token}`
+              }
+            });
+            const usersList= await fetchUsers.json();
+            const filteredObj = filterById(usersList, data.email);
+            const filtredid=filteredObj.id;
+            const tokenurl = `https://api.flat.io/v2/organizations/users/${filtredid}/accessToken`;
             fetch(tokenurl, {
               method: "POST",
               headers: {
@@ -63,24 +91,42 @@ function LoginForm() {
                   "scores",
                   "collections.readonly",
                   "collections.add_scores",
+                  "collections",
                   "edu.classes",
                   "edu.classes.readonly",
                   "edu.assignments",
                   "edu.assignments.readonly",
                   "tasks.readonly",
-                  "collections",
+                  "edu.admin",
+                  "edu.admin.lti",
+                  "edu.admin.lti.readonly",
+                  "edu.admin.users",
+                  "edu.admin.users.readonly",
                 ],
               }),
             })
               .then((res) => res.json())
-              .then((data) => {
-                console.log(data);
+              .then(async(data) => {
                 localStorage.setItem("flat_token_user", data.token);
-                navigate("/my-library");
+                 navigate("/my-library");
+                 const fetchlinksignin=await fetch(`https://api.flat.io/v2/organizations/users/${filtredid}/signinLink`, {
+                  method:"POST",
+                  headers:{
+                    "Content-Type":"application/json",
+                    Authorization:`Bearer ${token}`
+                  },
+                  body:JSON.stringify({
+                    destinationPath: "/"
+                  })
+                });
+                const urlobject=await fetchlinksignin.json();
+                const urlLiJena=urlobject.url;
+                  clickAndClose(urlLiJena);
               })
               .catch((err) => console.log(err));
           }
         }
+      
       } else if (res.status === 201) {
         Swal.fire({
           icon: "error",

@@ -71,7 +71,7 @@ function ResetPage() {
             value={email}
             onChange={handlechange}
           />
-          <button type="submit" className="reset-button">
+          <button type="submit" className="reset-button bg-[#f64f64]">
             Reset Password
           </button>
           <button onClick={handleClick} className="back">

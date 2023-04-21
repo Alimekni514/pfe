@@ -9,27 +9,21 @@ const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const [showServices, setShowServices] = useState(false);
 
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
-  };
-
   const toggleServices = () => {
     setShowServices(!showServices);
   };
 
   return (
     <>
-      <div className="sidebar-toggle" onClick={toggleSidebar}>
+      {/* <div className="sidebar-toggle" onClick={toggleSidebar}>
         {showSidebar ? <FaTimes /> : <FaBars />}
-      </div>
-      <aside className={`sidebar ${showSidebar ? "show-sidebar" : ""}`}>
+      </div> */}
+      <aside className={`sidebar  show-sidebar`}>
         <img src={conser} alt="conservatoire" className="conservatoire" />
         <ul className="sidebar-menu">
           <li className="sidebar-menu-item">
-           
-            <Link to="/" onClick={toggleSidebar}>
-              Classes
-            </Link>
+            <SiGoogleclassroom style={{ width: "20px", height: "20px" }} />
+            <Link to="/class">Classes</Link>
           </li>
           {/* <li className="sidebar-menu-item">
             <div className="sidebar-menu-link" onClick={toggleServices}>
@@ -58,14 +52,10 @@ const Sidebar = () => {
           {/* </li> */}
           <li className="sidebar-menu-item">
             <GiMusicalScore className="score" />
-            <Link to="/about" onClick={toggleSidebar}>
-              Scores Library
-            </Link>
+            <Link to="/my-library">Scores Library</Link>
           </li>
           <li className="sidebar-menu-item">
-            <Link to="/contact" onClick={toggleSidebar}>
-              Contact
-            </Link>
+            <Link to="/contact"></Link>
           </li>
         </ul>
       </aside>

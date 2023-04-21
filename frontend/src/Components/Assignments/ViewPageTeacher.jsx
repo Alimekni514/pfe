@@ -11,6 +11,7 @@ import {FiTrash2} from "react-icons/fi";
 import {FiMoreHorizontal,FiEdit3} from "react-icons/fi";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { Await } from "react-router-dom";
 
 function ViewPageTeacher() {
   //target div
@@ -26,57 +27,66 @@ function ViewPageTeacher() {
   const token ="739dfbe59fbe2b527108bcc88c8b596f019880b5a866e8001d7e9a2607a24339867cdc962807882c3a0b40c852cce06eeddabb8d28aa1b3d5c6b72ddef3d1d46";
 
   useEffect(() => {
-    if (target.current == null) return;
-    ///sharing key for the score
-    fetch(`https://api.flat.io/v2/scores/${student.submission.attachments[0].score}`, {
-      method:`PUT`,
-      headers:{
-        "Content-Type":"application/json",
-        Authorization:`Bearer ${token}`
-      },
-      body:JSON.stringify({
-        privacy:"privateLink"
-      })
-    })
-    .then((res)=>res.json())
-    .then(data=>setsharingkey(data.sharingKey))
-    .catch(err=>console.log(err));
-    var embed = new Embed(target.current, {
+    async function fetchfunction() {
+      if (target.current == null) return;
+      try {
+        const changePrivacyScore = await fetch(`https://api.flat.io/v2/scores/${student.submission.attachments[0].score}`, {
+          method: `PUT`,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            privacy: "privateLink"
+          })
+        });
+        const data = await changePrivacyScore.json();
+        setsharingkey(data.sharingKey);
+        const scoreComments = fetch(`https://api.flat.io/v2/classes/${student.submission.classroom}/assignments/${student.submission.assignment}/submissions/${student.submission.id}/comments`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        scoreComments.then((res) => res.json())
+          .then((data) => {
+            setcomments(data);
+            let commentsObject = {};
+            data.forEach(comment => {
+              commentsObject[comment.id] = comment.comment;
+            });
+            setcommentsObject(commentsObject);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchfunction();
+  }, []);
+  
+  useEffect(() => {
+    if (sharingKey === null) return;
+    const embed = new Embed(target.current, {
       embedParams: {
         mode: "edit",
         controlsPosition: "top",
         appId: "59e7684b476cba39490801c2",
       },
     });
-    embed
-      .loadFlatScore({
-        score: `${student.submission.attachments[0].score}`,
-        sharingKey:`${sharingKey}`,
-      })
+    embed.loadFlatScore({
+      score: `${student.submission.attachments[0].score}`,
+      sharingKey: `${sharingKey}`,
+    })
       .then(function () {
         console.log("cbon loaded");
       })
-      .catch(function (error) {});
-    //for grabbing the comments for the submisssion
-    fetch(
-      `https://api.flat.io/v2/classes/${student.submission.classroom}/assignments/${student.submission.assignment}/submissions/${student.submission.id}/comments`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setcomments(data);
-        let commentsObject={};
-        data.forEach(comment => {
-          commentsObject[comment.id] = comment.comment;
-        });
-        setcommentsObject(commentsObject);
+      .catch(function (error) {
+        console.log(error);
       });
-  }, []);
+  }, [sharingKey]);
+  
+  
+  
   const handleTerfessClick = (commentId) => {
     setDropdownVisible((prev) => !prev);
     // set the selected user id

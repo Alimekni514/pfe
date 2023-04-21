@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import Assignment from "../../contexts/Assignment";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getTimeElapsed } from "../../Assets/Functions-Need/TimeConversion";
 import "../../Css/Class/classroom.css";
 import "../../Css/PeoplePage/People.css";
-
 import { FiTrash2, FiMoreHorizontal } from "react-icons/fi";
 import { toast, ToastContainer } from "react-toastify";
 function People({ token }) {
   //states
   const { assignment, setassignment } = useContext(Assignment);
+  const navigate = useNavigate();
   const { classid } = useParams();
   const [students, setstudents] = useState([]);
   const [teachers, setteachers] = useState([]);
@@ -63,6 +63,10 @@ function People({ token }) {
         })
           .then((res) => res.json())
           .then((data) => {
+            window.localStorage.setItem(
+              "class_teacher-list",
+              JSON.stringify(data)
+            );
             setteachers(data);
             setfiltredteachers(data);
           });
@@ -89,8 +93,27 @@ function People({ token }) {
           .then((res) => res.json())
           .then((data) => {
             setstudents(data);
+            window.localStorage.setItem(
+              "class_student-list",
+              JSON.stringify(data)
+            );
             setfiltredstudents(data);
           });
+      })
+      .catch((err) => console.log(err));
+    //bech njibou list users kol bech nest7a9oulhom fil addpeople for filtering
+    fetch(`https://api.flat.io/v2/organizations/users`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.localStorage.setItem(
+          "Oragnization_users_List",
+          JSON.stringify(data)
+        );
       })
       .catch((err) => console.log(err));
   }, []);
@@ -100,7 +123,7 @@ function People({ token }) {
     const { id } = item;
     //to Delete the row of the user
     e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
-    
+
     // Handle delete logic
     fetch(`https://api.flat.io/v2/classes/${classid}/users/${id}`, {
       method: "DELETE",
@@ -123,6 +146,10 @@ function People({ token }) {
       })
       .catch((err) => console.log(err));
   };
+  //add people
+  const addpeople = () => {
+    navigate(`/class/${classid}/add`);
+  };
   return (
     <div>
       <div className="headerPeopleClass">
@@ -132,7 +159,7 @@ function People({ token }) {
           value={search}
           onChange={(e) => setsearch(e.target.value)}
         />
-        <button>Add People</button>
+        <button onClick={() => addpeople()}>Add People</button>
       </div>
       <div className="teachersClass">
         <h5>Teachers</h5>

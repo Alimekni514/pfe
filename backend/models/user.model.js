@@ -85,18 +85,19 @@ exports.signupchat = (username, firstname, lastname, email, password) => {
 //signin chat
 exports.signinchat = (username, password) => {
   return new Promise(async (resolve, reject) => {
-       await axios.get("https://api.chatengine.io/users/me/", {
+    await axios
+      .get("https://api.chatengine.io/users/me/", {
         headers: {
           "Project-ID": process.env.CHAT_ENGINE_PROJECT_ID,
           "User-Name": username,
           "User-Secret": password,
         },
       })
-      .then((result)=>resolve(result.data))
-      .catch((err)=>console.error(err.message))
+      .then((result) => resolve(result.data))
+      .catch((err) => console.error(err.message));
+  });
+};
 
-    })}; 
-    
 exports.login = (email, password) => {
   return new Promise((resolve, reject) => {
     mongoose
@@ -129,7 +130,8 @@ exports.login = (email, password) => {
                   token: token,
                   expiresIn: "20",
                   datauser: {
-                    user: user.username,
+                    user: user.email,
+                    username:user.username,
                     role: user.role,
                   },
                 };

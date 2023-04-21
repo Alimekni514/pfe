@@ -3,23 +3,35 @@ import Collection from "../Components/ScoreLibrary/Collection";
 import UserScore from "../Components/ScoreLibrary/UserScore";
 import Modal from "react-modal";
 import ModalInstrument from "../Components/InstrumentList/ModalInstrument";
-const token =window.localStorage.getItem("flat_token_user")??import.meta.env.VITE_ADMIN_TOKEN;
+import ModalAddCollection from "../Components/ScoreLibrary/ModalAddCollection";
+import { toast, ToastContainer } from "react-toastify";
+
+import { BiCollection } from "react-icons/bi";
 function ScoreLibrary() {
+  const token = window.localStorage.getItem("flat_token_user");
+  if (token === "" || token === null || token === undefined) {
+    // handle missing token error
+    console.error("Missing token");
+  }
+  console.log(localStorage.getItem("flat_token_user"));
   //states
   const [collections, setcollections] = useState([]);
   const [userscores, setuserscores] = useState([]);
   const [userid, setuserid] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen1, setModalIsOpen1] = useState(false);
   //handle modal show
   const handlemodalShow = () => {
     setModalIsOpen(true);
   };
+  //handle modal show 1
+  const handlemodalShow1 = () => {
+    setModalIsOpen1(true);
+  };
 
   //UseEffect+SideEffect:Fetch the collections and the Scores
   useEffect(() => {
-    const token =
-      window.localStorage.getItem("flat_token_user") ??
-      import.meta.env.VITE_ADMIN_TOKEN; //fetch the collections
+    //fetch the collections
     const urlcollections = "https://api.flat.io/v2/collections";
     fetch(urlcollections, {
       headers: {
@@ -144,15 +156,40 @@ function ScoreLibrary() {
           >
             New Score Or Tab
           </button>
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              outline: "none",
+              border: "none",
+              color: "#777",
+              margin: "15px 5px",
+              backgroundColor: "transparent",
+            }}
+            onClick={() => handlemodalShow1()}
+          >
+            <BiCollection />
+            Add a new Collection
+          </button>
         </div>
-        <div></div>
       </div>
+
       <ModalInstrument
         modalIsOpen={modalIsOpen}
         customStyles={customStyles1}
         setModalIsOpen1={setModalIsOpen}
+        setuserscores={setuserscores}
         token={token}
       />
+      <ModalAddCollection
+        modalIsOpen={modalIsOpen1}
+        customStyles={customStyles1}
+        setModalIsOpen1={setModalIsOpen1}
+        token={token}
+        setcollections={setcollections}
+      />
+      <ToastContainer />
     </div>
   );
 }

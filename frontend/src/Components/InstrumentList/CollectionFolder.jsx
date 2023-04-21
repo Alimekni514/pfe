@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import UserScorefolder from "./UserScorefolder";
 import ModalInstrument from "./ModalInstrument";
 import Modal from "react-modal";
-const token =
-  "1c126a1183aaaac514653cb3555fb05953ba09aba270914c8ca6dc65709fafc822dedeecbd4459d24ad7cf12a3c0eda8f2a8ec415d453a5b47d2bb68dd598dfa";
 function CollectionFolder() {
+  const token =window.localStorage.getItem("flat_token_user") || import.meta.env.VITE_ADMIN_TOKEN;
   const urlParts = window.location.href.split("/");
   const idcollection=urlParts[urlParts.length - 1];
   //states
@@ -51,6 +50,7 @@ function CollectionFolder() {
     .catch(err=>console.log(err));
   },[])
   return (
+    <div className="specialcontainer">
     <div>
       <h3>Scores  </h3>
       <div
@@ -100,6 +100,7 @@ function CollectionFolder() {
         token={token}
         collection={idcollection}
       />
+    </div>
     </div>
   );
 }

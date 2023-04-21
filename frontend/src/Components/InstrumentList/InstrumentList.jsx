@@ -5,7 +5,7 @@ import keyboards from "../../Assets/Images/keyboards.png";
 import brass from "../../Assets/Images/brass.png"
 import strings from "../../Assets/Images/strings.png";
 import Swal from "sweetalert2";
-const InstrumentList = ({titleobject,token,collection,setModalIsOpen1}) => {
+const InstrumentList = ({titleobject,token,collection,setModalIsOpen1,setuserscores}) => {
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [searchQuery,setSearchQuery]=useState("");
   const [InstrumentsWithCount ,setInstrumentsWithCount ]=useState([]);
@@ -170,6 +170,30 @@ const InstrumentList = ({titleobject,token,collection,setModalIsOpen1}) => {
    })
    .then((res)=>res.json())
    .then(data=>{
+    const currentuserlink = "https://api.flat.io/v2/me";
+    fetch(currentuserlink, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const userscores = `https://api.flat.io/v2/users/${data.id}/scores`;
+        fetch(userscores, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setuserscores(data);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+
     setModalIsOpen1(false);
     Swal.fire({
       position: 'center',
@@ -263,7 +287,7 @@ const InstrumentList = ({titleobject,token,collection,setModalIsOpen1}) => {
       <div className='instrumentselected'>
             <p>Instruments Selected:</p>
             {InstrumentsWithCount &&InstrumentsWithCount.map(Instrument=> (
-              <p key={Instrument} className="selected">{Instrument} </p>
+              <p key={Instrument} className="selectedinst">{Instrument} </p>
             ))}
       </div>
       </div>
