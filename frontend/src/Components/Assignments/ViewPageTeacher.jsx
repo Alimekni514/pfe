@@ -12,8 +12,14 @@ import {FiMoreHorizontal,FiEdit3} from "react-icons/fi";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { Await } from "react-router-dom";
+import AdminContext from "../../contexts/AdminContext";
+import UserContext from "../../contexts/UserContext";
 
 function ViewPageTeacher() {
+  const {admin,setadmin}=useContext(AdminContext);
+  const {user,setuser}=useContext(UserContext);
+  setadmin(false);
+  setuser(false);
   //target div
   const target = useRef();
   let student = JSON.parse(window.localStorage.getItem("submission"));

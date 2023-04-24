@@ -133,6 +133,8 @@ exports.login = (email, password) => {
                     user: user.email,
                     username:user.username,
                     role: user.role,
+                    firstname:user.firstname,
+                    lastname:user.lastname,
                   },
                 };
                 resolve(paydata);

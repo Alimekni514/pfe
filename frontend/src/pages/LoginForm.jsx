@@ -14,17 +14,33 @@ import axios from "axios";
 import womanviolon from "../assets/Images/SignIn/womanviolon.png";
 import musicsolam from "../assets/Images/SignIn/musicsolem.png";
 import saxophone from "../assets/Images/home/saxophone.png";
-import {useAuthUser} from 'react-auth-kit'
+import { useAuthUser } from "react-auth-kit";
 function clickAndClose(url) {
-  // Open URL in new tab with target="_blank"
-  const newTab = window.open(url, '_blank');
-
-  // Wait for 1 second (1000 milliseconds)
-  setTimeout(() => {
-    // Close the new tab
+  const newTab = window.open(
+    url,
+    "_blank",
+    "width=1,height=1,left=-1000,top=-1000"
+  );
+  newTab.blur();
+  window.focus();
+  setTimeout(function () {
     newTab.close();
-  }, 2000);
+  }, 2000); // wait 5 seconds (5000 milliseconds) before closing the new tab
 }
+// function clickAndClose(url) {
+//   const iframe = document.createElement("iframe");
+//   iframe.style.width = "0";
+//   iframe.style.height = "0";
+//   iframe.style.border = "0";
+//   iframe.style.position = "absolute";
+//   iframe.style.left = "-9999px";
+//   iframe.style.top = "-9999px";
+//   iframe.src = url;
+//   document.body.appendChild(iframe);
+//   setTimeout(function () {
+//     iframe.parentNode.removeChild(iframe);
+//   }, 5000); // wait 5 seconds (5000 milliseconds) before removing the iframe from the page
+// }
 
 function LoginForm() {
   const token = import.meta.env.VITE_ADMIN_TOKEN;
@@ -38,14 +54,14 @@ function LoginForm() {
   const signIn = useSignIn();
   const { admin, setadmin } = useContext(AdminContext);
   const { user, setuser } = useContext(UserContext);
-  const {badge,setbadge}=useContext(Badge);
-  const auth = useAuthUser()
+  const { badge, setbadge } = useContext(Badge);
+  const auth = useAuthUser();
   //Functions
   const navigate = useNavigate();
   function filterById(array, email) {
-    return array.filter(obj => obj.email === email)[0];
+    return array.filter((obj) => obj.email === email)[0];
   }
-  
+
   const onsubmit = (data, event) => {
     event.preventDefault();
     axios.post("http://localhost:5000/login", data).then(async (res) => {
@@ -65,16 +81,19 @@ function LoginForm() {
           } else {
             setuser(true);
             setbadge(true);
-         
-            const fetchUsers=await fetch(`https://api.flat.io/v2/organizations/users`, {
-              headers:{
-                "Content-Type":"application/json",
-                Authorization:`Bearer ${token}`
+
+            const fetchUsers = await fetch(
+              `https://api.flat.io/v2/organizations/users`,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
               }
-            });
-            const usersList= await fetchUsers.json();
+            );
+            const usersList = await fetchUsers.json();
             const filteredObj = filterById(usersList, data.email);
-            const filtredid=filteredObj.id;
+            const filtredid = filteredObj.id;
             const tokenurl = `https://api.flat.io/v2/organizations/users/${filtredid}/accessToken`;
             fetch(tokenurl, {
               method: "POST",
@@ -106,27 +125,42 @@ function LoginForm() {
               }),
             })
               .then((res) => res.json())
-              .then(async(data) => {
+              .then(async (data) => {
                 localStorage.setItem("flat_token_user", data.token);
-                 navigate("/my-library");
-                 const fetchlinksignin=await fetch(`https://api.flat.io/v2/organizations/users/${filtredid}/signinLink`, {
-                  method:"POST",
-                  headers:{
-                    "Content-Type":"application/json",
-                    Authorization:`Bearer ${token}`
-                  },
-                  body:JSON.stringify({
-                    destinationPath: "/"
-                  })
-                });
-                const urlobject=await fetchlinksignin.json();
-                const urlLiJena=urlobject.url;
-                  clickAndClose(urlLiJena);
+                navigate("/my-library");
+                const fetchlinksignin = await fetch(
+                  `https://api.flat.io/v2/organizations/users/${filtredid}/signinLink`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                      destinationPath: "/",
+                    }),
+                  }
+                );
+                const urlobject = await fetchlinksignin.json();
+                const urlLiJena = urlobject.url;
+                clickAndClose(urlLiJena);
               })
               .catch((err) => console.log(err));
           }
+          fetch(`http://localhost:1000/api/auth/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              // set the token in a cookie with domain of localhost and path of /
+              document.cookie = `token=${data.authToken}; domain=localhost; path=/`;
+            })
+            .catch((err) => console.log(err));
         }
-      
       } else if (res.status === 201) {
         Swal.fire({
           icon: "error",

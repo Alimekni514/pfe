@@ -14,6 +14,7 @@ import {
   getSubmissionStateCounts,
 } from "../../assets/Functions-Need/SubmissionAdmin";
 import "react-toastify/dist/ReactToastify.css";
+import {Table } from "flowbite-react"
 import {
   AiOutlineEdit,
   AiOutlineFolder,
@@ -39,6 +40,7 @@ function AssignmentCo({ token }) {
   const [activeMenu, setActiveMenu] = useState(null);
   const [activeMenuArchived, setactiveMenuArchived] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [resultQuiz, setresultQuiz] = useState([]);
 
   useEffect(() => {
     const handleClick = () => setActiveMenu(null);
@@ -83,6 +85,7 @@ function AssignmentCo({ token }) {
   //useEffect for applying the filtres on the assignments
   useEffect(() => {
     setzeroassignment(false);
+    setresultQuiz(null);
     let newAssignments = assignmentsList;
     if (statusAssignment) {
       if (statusAssignment === "On going") {
@@ -136,22 +139,21 @@ function AssignmentCo({ token }) {
           : setzeroassignment(false);
         settypeassignment("Composition assignment");
       } else if (activityAssignment === "Worksheet assignment") {
-        newAssignments = newAssignments.filter(
-          (assignment) => assignment.type === "worksheet"
-        );
-        newAssignments.length == 0
-          ? setzeroassignment(true)
-          : setzeroassignment(false);
+        newAssignments = [];
+        fetch(`http://localhost:1000/api/result/results`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setresultQuiz(data);
+          })
+          .catch((err) => console.log(err));
+        // newAssignments.length == 0
+        //   ? setzeroassignment(true)
+        //   : setzeroassignment(false);
         settypeassignment("Worksheet assignment");
-      } else if (activityAssignment === "Performance assignment") {
-        newAssignments = newAssignments.filter(
-          (assignment) => assignment.type === "performance"
-        );
-
-        newAssignments.length == 0
-          ? setzeroassignment(true)
-          : setzeroassignment(false);
-        settypeassignment("Performance assignment");
       }
     }
     setfiltredassignments(newAssignments);
@@ -419,7 +421,7 @@ function AssignmentCo({ token }) {
         </div>
         <button
           className="createassignmentbtn"
-          onClick={() => navigate(`/class/${classid}/assignment`)}
+          onClick={() => navigate(`/class/${classid}/assignment/types`)}
         >
           <IoIosAddCircleOutline /> Create Assignment
         </button>
@@ -542,6 +544,46 @@ function AssignmentCo({ token }) {
             </div>
           </div>
         ))}
+   {resultQuiz && (<Table>
+  <Table.Head>
+    <Table.HeadCell>
+      Quizz Code
+    </Table.HeadCell>
+    <Table.HeadCell>
+      User
+    </Table.HeadCell>
+    <Table.HeadCell>
+      Score
+    </Table.HeadCell>
+    <Table.HeadCell>
+      Date
+    </Table.HeadCell>
+    <Table.HeadCell>
+      <span className="sr-only">
+        Delete
+      </span>
+    </Table.HeadCell>
+  </Table.Head>
+  <Table.Body className="divide-y">
+    {resultQuiz.map((result) => ( <Table.Row  key={result.user}className="bg-white dark:border-gray-700 dark:bg-gray-800">
+      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+       {result.quizCode}
+      </Table.Cell>
+      <Table.Cell>
+        {result.name}
+      </Table.Cell>
+      <Table.Cell>
+       {result.score}
+      </Table.Cell>
+      <Table.Cell>
+       {result.date}
+      </Table.Cell>
+      <Table.Cell>
+          <a href="/tables" className="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+      </Table.Cell>
+      </Table.Row>))}
+  </Table.Body>
+</Table>)}
       {zeroassignment && (
         <div className="zeroassignment">
           <img

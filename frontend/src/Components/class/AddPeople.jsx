@@ -6,6 +6,8 @@ import { MdArrowBack } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import { Clipboard } from "react-feather";
 import "react-toastify/dist/ReactToastify.css";
+import AdminContext from "../../contexts/AdminContext";
+import UserContext from "../../contexts/UserContext";
 import ClassContext from "../../contexts/ClassContext";
 
 const token =
@@ -24,6 +26,8 @@ function AddPeople() {
   const combinedArray = classStudentList.concat(classTeacherList);
   //context
   const { classroom, setclassroom } = useContext(ClassContext);
+  const {admin,setadmin}=useContext(AdminContext);
+  const {user,setuser}=useContext(UserContext);
   //states
   const [showContainerPepole, setShowContainerPeople] = useState(true);
   const [organizationUsers, setorganizationUsers] = useState([]);
@@ -37,6 +41,7 @@ function AddPeople() {
   //useEffect for the filter Search
   //useeffect for the filter
   useEffect(() => {
+   
     if (search.length === 0) {
       setfiltredOrganizationUser(organizationUsers);
     } else {
@@ -59,6 +64,8 @@ function AddPeople() {
   };
   //useEffect -Grabbing the list of Users
   useEffect(() => {
+    setadmin(false);
+    setuser(false);
     //function to add status field for the people in the class
     updateOrganizationUsersWithSubscriptionStatus(
       organizationUsersList,
@@ -71,6 +78,9 @@ function AddPeople() {
     setorganizationUsers(differentFromAdmin);
     console.log(filtredOrganizationUser);
     console.log(organizationUsers);
+    return ()=> {
+      setadmin(true);
+    }
   }, []);
   //functions
   const handleShowExisting = () => {
@@ -141,107 +151,109 @@ function AddPeople() {
   }
 
   return (
-    <div className="containerAddPeople">
-      <div className="add-people-class"></div>
-      {showContainerPepole && (
-        <div className="addPeopleSectiona">
-          <h3 className="addpeopletitle">
-            How do you want to add students to your class?
-          </h3>
-          <div className="fcards-horizontal-list">
-            <div className="fcard-horizontal">
-              <FcBrokenLink />
-              <div className="info-card" onClick={() => handleShowCode()}>
-                <h5>Share an invitation link or code </h5>
-                <p>Your students will be able to set up their own accounts</p>
-              </div>
-            </div>
-            <div
-              className="fcard-horizontal"
-              onClick={() => handleShowExisting()}
-            >
-              <BsPersonFillAdd />
-              <div className="info-card">
-                <h5>Add existing students from your school to your class</h5>
-                <p>
-                  If students already have an account associated with your
-                  school,select and invite them to your class{" "}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {existingStudents && (
-        <div className="addExistingStudentsContainer">
-          <h3>Add existing Students from your school to your class</h3>
-          <input
-            className="searchUsersinputa"
-            type="text"
-            placeholder="Search by name or email"
-            value={search}
-            onChange={(e) => setsearch(e.target.value)}
-          />
-          <div className="edulist">
-            {filtredOrganizationUser &&
-              filtredOrganizationUser.map((user) => (
-                <div key={user.id} className="userDiv">
-                  <div className="infoUserOr">
-                    <input
-                      type="checkbox"
-                      disabled={user.joined}
-                      onChange={(e) => handleCheckboxChange(e, user)}
-                    />
-                    <img src={user.picture} alt="userlogo" />
-                    <span className="userNamee" style={{ fontWeight: 600 }}>
-                      {user.printableName}
-                    </span>
-                    <span className="typeofuser"> {user.classRole}</span>
-                    <div>
-                      {user.joined ? (
-                        <span className="joined">Already in Class</span>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
-                  <span>{user.email}</span>
+    <div>
+      <div className="containerAddPeople">
+        <div className="add-people-class"></div>
+        {showContainerPepole && (
+          <div className="addPeopleSectiona">
+            <h3 className="addpeopletitle">
+              How do you want to add students to your class?
+            </h3>
+            <div className="fcards-horizontal-list">
+              <div className="fcard-horizontal">
+                <FcBrokenLink />
+                <div className="info-card" onClick={() => handleShowCode()}>
+                  <h5>Share an invitation link or code </h5>
+                  <p>Your students will be able to set up their own accounts</p>
                 </div>
-              ))}
+              </div>
+              <div
+                className="fcard-horizontal"
+                onClick={() => handleShowExisting()}
+              >
+                <BsPersonFillAdd />
+                <div className="info-card">
+                  <h5>Add existing students from your school to your class</h5>
+                  <p>
+                    If students already have an account associated with your
+                    school,select and invite them to your class{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="footerExisting">
-            <button id="backstudent" onClick={() => returnPage()}>
-              {" "}
+        )}
+        {existingStudents && (
+          <div className="addExistingStudentsContainer">
+            <h3>Add existing Students from your school to your class</h3>
+            <input
+              className="searchUsersinputa"
+              type="text"
+              placeholder="Search by name or email"
+              value={search}
+              onChange={(e) => setsearch(e.target.value)}
+            />
+            <div className="edulist">
+              {filtredOrganizationUser &&
+                filtredOrganizationUser.map((user) => (
+                  <div key={user.id} className="userDiv">
+                    <div className="infoUserOr">
+                      <input
+                        type="checkbox"
+                        disabled={user.joined}
+                        onChange={(e) => handleCheckboxChange(e, user)}
+                      />
+                      <img src={user.picture} alt="userlogo" />
+                      <span className="userNamee" style={{ fontWeight: 600 }}>
+                        {user.printableName}
+                      </span>
+                      <span className="typeofuser"> {user.classRole}</span>
+                      <div>
+                        {user.joined ? (
+                          <span className="joined">Already in Class</span>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                    <span>{user.email}</span>
+                  </div>
+                ))}
+            </div>
+            <div className="footerExisting">
+              <button id="backstudent" onClick={() => returnPage()}>
+                {" "}
+                <MdArrowBack />
+                Back
+              </button>
+              <button id="addpeopple" onClick={() => AddPeople()}>
+                Add {selectedUsers.length} People
+              </button>
+            </div>
+            <ToastContainer />
+          </div>
+        )}
+        {showcode && (
+          <div className="showcodeContainer">
+            <h1>Share an invitation code </h1>
+            <p id="titleshowcode">
+              They can open <span>join.ariana.conservatory</span> in their web
+              browser and type the following code once they signed up:
+            </p>
+            <div className="copytoClipboard">
+              <input id="copyinput" type="text" readOnly value={inputValue} />
+              <button onClick={handleCopyClick}>
+                <Clipboard size={16} />
+              </button>
+              <ToastContainer />
+            </div>
+            <button id="backstudent" onClick={() => returnPage1()}>
               <MdArrowBack />
               Back
             </button>
-            <button id="addpeopple" onClick={() => AddPeople()}>
-              Add {selectedUsers.length} People
-            </button>
           </div>
-          <ToastContainer />
-        </div>
-      )}
-      {showcode && (
-        <div className="showcodeContainer">
-          <h1>Share an invitation code </h1>
-          <p id="titleshowcode">
-            They can open <span>join.ariana.conservatory</span> in their web
-            browser and type the following code once they signed up:
-          </p>
-          <div className="copytoClipboard">
-            <input id="copyinput" type="text" readOnly value={inputValue} />
-            <button onClick={handleCopyClick}>
-              <Clipboard size={16} />
-            </button>
-            <ToastContainer />
-          </div>
-          <button id="backstudent" onClick={() => returnPage1()}>
-            <MdArrowBack />
-            Back
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

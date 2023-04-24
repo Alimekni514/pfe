@@ -24,6 +24,10 @@ code {
   font-family: "Lato" !important;
   list-style: none !important;
 }
+.cardcomposition {
+  display: flex;
+  justify-content: space-between!important;
+}
 .ce-default-button,
 .ce-chat-form-button {
   background-color: rgb(246, 79, 100) !important ;

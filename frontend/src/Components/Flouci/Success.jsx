@@ -50,6 +50,17 @@ function Success() {
         window.localStorage.setItem("currentUserId", data.id);
       })
       .catch((error) => console.error(error));
+    // Sign up for the Quizz
+    fetch(`http://localhost:1000/api/auth/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
     //signup for the chat
     const url1 = "http://localhost:5000/signupchat";
     fetch(url1, {

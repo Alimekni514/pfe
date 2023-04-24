@@ -8,6 +8,8 @@ import { GiMusicalScore } from "react-icons/gi";
 import Swal from "sweetalert2";
 import { BiCommentAdd } from "react-icons/bi";
 import Modal from "react-modal";
+import AdminContext from "../../contexts/AdminContext";
+import UserContext from "../../contexts/UserContext";
 
 import {
   MdModeEditOutline,
@@ -37,6 +39,8 @@ function SkeletonNewScore() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedstudentgrade, setselectedstudentgrade] = useState("");
   const link = attachments.filter((obj) => obj.type === "link");
+  const {admin,setadmin}=useContext(AdminContext);
+    const {user,setuser}=useContext(UserContext);
   const objWithCopySharingMode = attachments.find(
     (obj) => obj.hasOwnProperty("sharingMode") && obj.sharingMode === "copy"
   );
@@ -47,6 +51,9 @@ function SkeletonNewScore() {
   const [selectedsubmission, setselectedsubmission] = useState({});
   // UseEffect for grab
   useEffect(() => {
+    
+    setadmin(false);
+    setuser(false);
     const fetchData = async () => {
       const listStudent = await getStudentSubmissionsWithUserData(
         token,
@@ -66,6 +73,10 @@ function SkeletonNewScore() {
       setGrade(initialGrades);
     };
     fetchData();
+    return ()=> {
+      setadmin(true);
+    
+    }
   }, []);
   //handle Change
   const handlechange = (e) => {

@@ -31,6 +31,7 @@ import ViewPageTeacher from "../Components/Assignments/ViewPageTeacher";
 import AddPeople from "../Components/class/AddPeople";
 import BadgeAvatar from "../Components/Badge/BadgeAvatar";
 import ManageAuthentification from "../Components/CustomHooks/ManageAuthentification";
+import AssignmentTypes from "../Components/class/AssignmentTypes";
 
 function MainRouter() {
   const [admin, setadmin] = useState(
@@ -93,6 +94,7 @@ function MainRouter() {
                       path="/class/:classid/assignment/:assignmentId/edit"
                       element={<EditCreateAssignment />}
                     />
+                    <Route path="/class/:classid/assignment/types" element={<AssignmentTypes/>}/>
                     <Route path="/class/:classid/add" element={<AddPeople />} />
                     <Route path="/view" element={<ViewPageTeacher />} />
                     <Route path="/people" element={<People />} />

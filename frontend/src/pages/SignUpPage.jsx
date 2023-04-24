@@ -85,6 +85,7 @@ function SignUpPage() {
             })
             .catch((err) => console.log(err.message));
         }
+        fetch();
       });
     }
   };
