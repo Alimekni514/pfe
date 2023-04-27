@@ -21,7 +21,7 @@ function AssignmentTypes() {
           </p>
         </div>
         <Button
-          className="!bg-[#f64f64] !text-[#fff] h-[40px]"
+          className="!bg-[#f64f64] !text-[#fff] !h-[40px]"
           onClick={() => navigate(`/class/${classid}/assignment`)}
         >
           <span className="!text-[#fff]"> Create</span>
@@ -50,7 +50,7 @@ function AssignmentTypes() {
             reuse assignments whenever you like.
           </p>
         </div>
-        <Button className="!bg-[#f64f64] !text-[#fff] h-[40px]">
+        <Button className="!bg-[#f64f64] !text-[#fff] !h-[40px]">
           <span
             className="!text-[#fff]"
             onClick={() => window.location.replace("http://localhost:3001")}

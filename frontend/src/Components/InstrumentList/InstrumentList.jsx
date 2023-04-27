@@ -189,6 +189,33 @@ const InstrumentList = ({
     })
       .then((res) => res.json())
       .then((data) => {
+        const submissioninfo = JSON.parse(
+          localStorage.getItem("submissionInformation")
+        );
+        if (submissioninfo) {
+          fetch(
+            `https://api.flat.io/v2/classes/${submissioninfo.classid}/assignments/${submissioninfo.assignmentId}/submissions`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                attachments: [
+                  {
+                    type: "flat",
+                    score: data.id,
+                    title: data.title,
+                  },
+                ],
+              }),
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err));
+        }
         const currentuserlink = "https://api.flat.io/v2/me";
         fetch(currentuserlink, {
           headers: {

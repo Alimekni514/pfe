@@ -25,7 +25,7 @@ function clickAndClose(url) {
   window.focus();
   setTimeout(function () {
     newTab.close();
-  }, 2000); // wait 5 seconds (5000 milliseconds) before closing the new tab
+  }, 4000); // wait 5 seconds (5000 milliseconds) before closing the new tab
 }
 // function clickAndClose(url) {
 //   const iframe = document.createElement("iframe");

@@ -10,11 +10,11 @@ function ModalInstrument({
   setModalIsOpen1,
   customStyles,
   collection,
-  setuserscores
+  setuserscores,
 }) {
   //states
   const [firstwindow, setfirstwindow] = useState(true);
-   collection=collection || "root";
+  collection = collection || "root";
   //states
   const [title, settitle] = useState("");
   //Functions
@@ -55,7 +55,13 @@ function ModalInstrument({
           titleobject={{ title, settitle }}
         />
       ) : (
-        <InstrumentList  setModalIsOpen1={setModalIsOpen1} collection={collection} titleobject={{ title, settitle }} token={token} setuserscores={setuserscores} />
+        <InstrumentList
+          setModalIsOpen1={setModalIsOpen1}
+          collection={collection}
+          titleobject={{ title, settitle }}
+          token={token}
+          setuserscores={setuserscores}
+        />
       )}
     </Modal>
   );

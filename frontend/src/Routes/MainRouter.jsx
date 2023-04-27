@@ -32,7 +32,9 @@ import AddPeople from "../Components/class/AddPeople";
 import BadgeAvatar from "../Components/Badge/BadgeAvatar";
 import ManageAuthentification from "../Components/CustomHooks/ManageAuthentification";
 import AssignmentTypes from "../Components/class/AssignmentTypes";
-
+import ClassroomUser from "../Components/classStudent/ClassroomUser";
+import ClassPageUser from "../pages/ClassPageUser";
+import SkeletonScore from "../Components/classStudent/SkeletonScore";
 function MainRouter() {
   const [admin, setadmin] = useState(
     JSON.parse(localStorage.getItem("_auth_state"))?.role === "admin" && true
@@ -78,10 +80,16 @@ function MainRouter() {
                     <Route path="/chat" element={<ChatPage />} />
                     <Route path="/navbar" element={<Navigation />} />
                     <Route path="/class" element={<ClassPage />} />
+                    <Route path="/class/user" element={<ClassPageUser />} />
                     <Route
                       path="/class/:classid"
                       element={<ClassroomAdmin />}
                     />
+                    <Route
+                      path="/class/:classid/user"
+                      element={<ClassroomUser />}
+                    />
+
                     <Route
                       path="/class/:classid/assignment"
                       element={<CreateAssignment />}
@@ -91,11 +99,22 @@ function MainRouter() {
                       element={<SkeletonNewScore />}
                     />
                     <Route
+                      path="/class/:classid/assignment/:assignmentId/user"
+                      element={<SkeletonScore />}
+                    />
+                    <Route
                       path="/class/:classid/assignment/:assignmentId/edit"
                       element={<EditCreateAssignment />}
                     />
-                    <Route path="/class/:classid/assignment/types" element={<AssignmentTypes/>}/>
+                    <Route
+                      path="/class/:classid/assignment/types"
+                      element={<AssignmentTypes />}
+                    />
                     <Route path="/class/:classid/add" element={<AddPeople />} />
+                    <Route
+                      path="/class/:classid/stream/user"
+                      element={<ClassroomUser />}
+                    />
                     <Route path="/view" element={<ViewPageTeacher />} />
                     <Route path="/people" element={<People />} />
                   </Routes>
