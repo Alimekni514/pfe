@@ -33,7 +33,7 @@ function BadgeAvatar() {
     navigate("/");
   };
   return (
-    <div className="fixed right-32 top-[13px]">
+    <div className="fixed right-32 top-[13px] !z-999">
       <Dropdown
         label={
           <Avatar
@@ -53,7 +53,7 @@ function BadgeAvatar() {
         </Dropdown.Header>
         <Dropdown.Item></Dropdown.Item>
         <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>Earnings</Dropdown.Item>
+        {/* <Dropdown.Item>Earnings</Dropdown.Item> */}
         <Dropdown.Divider />
         <Dropdown.Item>
           <a href="/" onClick={(e) => handleSignOut(e)}>

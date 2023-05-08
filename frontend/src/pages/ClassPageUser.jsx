@@ -3,13 +3,14 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { FcMusic } from "react-icons/fc";
 import "../Css/Class/ClassPage.css";
 import { SiApplemusic } from "react-icons/si";
-const token = window.localStorage.getItem("flat_token_user");
+
 import Modal from "react-modal";
 import JoinClassModal from "../Components/classStudent/JoinClassModal";
 import ClassContext from "../contexts/ClassContext";
 import { useNavigate } from "react-router-dom";
 
 function ClassPageUser() {
+  const token = window.localStorage.getItem("flat_token_user");
   //states
   //classes avaible for the current user
   const [classesuser, setclassesuser] = useState([]);
@@ -50,7 +51,7 @@ function ClassPageUser() {
           <span>Join a new Class</span>
         </div>
         {classesuser &&
-          classesuser.map((classe) => (
+          classesuser?.map((classe) => (
             <div
               className="clist-card"
               style={{

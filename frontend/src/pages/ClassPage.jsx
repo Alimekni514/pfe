@@ -26,9 +26,61 @@ function ClassPage() {
       .then((res) => res.json())
       .then((data) => {
         setclassesuser(data);
+        // Function to generate a random hex color
+        function getRandomColor() {
+          const colors = [
+            "#FFC0CB",
+            "#F692BC",
+            "#F4ADC6",
+            "#FDFD95",
+            "#AAC5E2",
+            "#6891C3",
+            "#FFCC9C",
+            "#FEEEB9",
+            "#E6AFC3",
+          ];
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          return randomColor;
+        }
+        // Get the existing array from the cookie
+        // To read the cookie, you can use the following code
+        const cookies = document.cookie.split("; ");
+        const myArrayCookie = cookies.find((cookie) =>
+          cookie.startsWith("myArray=")
+        );
+        let existingArray = [];
+        if (myArrayCookie) {
+          const myArrayJson = myArrayCookie.split("=")[1];
+          existingArray = JSON.parse(myArrayJson);
+        }
+
+        const newArray = data.map((item) => {
+          // Check if the object already exists in the existingArray
+          const existingObject = existingArray.find(
+            (obj) => obj.id === item.id
+          );
+          if (existingObject) {
+            // If the object exists, use the existing color
+            item.color = existingObject.color;
+          } else {
+            // If the object doesn't exist, generate a random color and add it to the object
+            const assignedColors = existingArray.map((obj) => obj.color);
+            let color = getRandomColor();
+            while (assignedColors.includes(color)) {
+              color = getRandomColor();
+            }
+            item.color = color;
+          }
+          return { name: item.name, id: item.id, color: item.color };
+        });
+        // Convert the array to a JSON string
+        const jsonString = JSON.stringify(newArray);
+        // Set the cookie with the JSON string
+        document.cookie = `myArray=${jsonString}; path=/`;
       })
       .catch((err) => console.log(err));
   }, []);
+
   const handleOpenModal = () => {
     setModalIsOpen(true);
   };

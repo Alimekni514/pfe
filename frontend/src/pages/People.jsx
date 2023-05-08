@@ -357,7 +357,7 @@ function UserTable() {
             <th>OrganizationRole</th>
             <th>Last Activity</th>
             <th>License</th>
-            <th>Terfess</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

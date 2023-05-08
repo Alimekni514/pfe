@@ -5,6 +5,8 @@ import "../../Css/SideBar/sidebar.css";
 import conser from "../../Assets/Images/conservatoire.jpg";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiMusicalScore } from "react-icons/gi";
+import { FcCalendar } from "react-icons/fc";
+import { BsFillPeopleFill } from "react-icons/bs";
 const SidebarAdmin = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showServices, setShowServices] = useState(false);
@@ -19,17 +21,15 @@ const SidebarAdmin = () => {
 
   return (
     <>
-      <div className="sidebar-toggle" onClick={toggleSidebar}>
+      {/* <div className="sidebar-toggle" onClick={toggleSidebar}>
         {showSidebar ? <FaTimes /> : <FaBars />}
-      </div>
-      <aside className={`sidebar ${showSidebar ? "show-sidebar" : ""}`}>
+      </div> */}
+      <aside className={`sidebar  show-sidebar`}>
         <img src={conser} alt="conservatoire" className="conservatoire" />
         <ul className="sidebar-menu">
           <li className="sidebar-menu-item">
-            <SiGoogleclassroom className="classroom" />
-            <Link to="/" onClick={toggleSidebar}>
-              Classes
-            </Link>
+            <SiGoogleclassroom style={{ width: "20px", height: "20px" }} />
+            <Link to="/class">Classes</Link>
           </li>
           {/* <li className="sidebar-menu-item">
             <div className="sidebar-menu-link" onClick={toggleServices}>
@@ -58,19 +58,15 @@ const SidebarAdmin = () => {
           {/* </li> */}
           <li className="sidebar-menu-item">
             <GiMusicalScore className="score" />
-            <Link to="/about" onClick={toggleSidebar}>
-              terfess
-            </Link>
+            <Link to="/my-library">Scores Library</Link>
           </li>
           <li className="sidebar-menu-item">
-            <Link to="/contact" onClick={toggleSidebar}>
-              Contact
-            </Link>
+            <BsFillPeopleFill />
+            <Link to="/people">People</Link>
           </li>
           <li className="sidebar-menu-item">
-            <Link to="/contact" onClick={toggleSidebar}>
-              zeber
-            </Link>
+            <FcCalendar />
+            <Link to="http://localhost:3001/calendar">Calendar</Link>
           </li>
         </ul>
       </aside>

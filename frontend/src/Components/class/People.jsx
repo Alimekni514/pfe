@@ -38,6 +38,11 @@ function People({ token }) {
       setfiltredstudents(filtreddatastudents);
     }
   }, [search]);
+  const handleTerfessClick = (userId) => {
+    setDropdownVisible((prev) => !prev);
+    // set the selected user id
+    setSelectedUserId(userId);
+  };
   useEffect(() => {
     //Bech njibou les teachers
     fetch(`https://api.flat.io/v2/classes/${classid}`, {
@@ -96,9 +101,55 @@ function People({ token }) {
           });
       })
       .catch((err) => console.log(err));
+    //bech njibou list users kol bech nest7a9oulhom fil addpeople for filtering
+    fetch(`https://api.flat.io/v2/organizations/users`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.localStorage.setItem(
+          "Oragnization_users_List",
+          JSON.stringify(data)
+        );
+      })
+      .catch((err) => console.log(err));
   }, []);
+  //handle delete
+  const handleDelete = (e, item) => {
+    e.preventDefault();
+    const { id } = item;
+    //to Delete the row of the user
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
 
-
+    // Handle delete logic
+    fetch(`https://api.flat.io/v2/classes/${classid}/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        toast.success("🦄User deleted successfully", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+  //add people
+  const addpeople = () => {
+    navigate(`/class/${classid}/add`);
+  };
   return (
     <div>
       <div className="headerPeopleClass">
@@ -108,13 +159,16 @@ function People({ token }) {
           value={search}
           onChange={(e) => setsearch(e.target.value)}
         />
+        <button onClick={() => addpeople()}>Add People</button>
       </div>
       <div className="teachersClass">
-        <h5 >Teachers</h5>
+        <h5>Teachers</h5>
         <table>
           <thead>
             <tr>
-              <th className="text-left">Name</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Last Activity</th>
             </tr>
           </thead>
           <tbody>
@@ -124,17 +178,22 @@ function People({ token }) {
                   <img src={teacher.picture} alt="userpicture" />
                   {teacher.printableName}
                 </td>
+                <td>{teacher.email}</td>
+                <td>{getTimeElapsed(teacher.lastActivityDate)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="StudentClass">
-        <h5>Classmates</h5>
+        <h5>Students</h5>
         <table>
           <thead>
             <tr>
-              <th className="text-left">Name</th>
+              <th>Name</th>
+              <th style={{ textAlign: "center" }}>Email</th>
+              <th>Last Activity</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -145,7 +204,38 @@ function People({ token }) {
                   {student.printableName}
                 </td>
                 <td style={{ textAlign: "center" }}>{student.email}</td>
-  
+                <td>{getTimeElapsed(student.lastActivityDate)}</td>
+
+                <td>
+                  <div
+                    className="terfess-icon"
+                    onClick={() => handleTerfessClick(student.id)}
+                    style={{ position: "relative" }}
+                  >
+                    <FiMoreHorizontal />
+                    {dropdownVisible && selectedUserId === student.id && (
+                      <div
+                        className="dropdown-menu"
+                        style={{
+                          position: "absolute",
+                          top: "calc(100% + 8px)",
+                          left: "-80px",
+                        }}
+                      >
+                        <ul>
+                          <li>
+                            <button
+                              onClick={(e) => handleDelete(e, student)}
+                              style={{ fontSize: "14px" }}
+                            >
+                              <FiTrash2 /> Delete Account
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

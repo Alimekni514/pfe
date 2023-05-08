@@ -58,13 +58,6 @@ function ClassroomAdmin() {
             </li>
             <li
               style={{ cursor: "pointer" }}
-              onClick={() => setSelectedMenuItem("Reviews")}
-              className={selectedMenuItem === "Reviews" ? "selectedli" : ""}
-            >
-              Reviews
-            </li>
-            <li
-              style={{ cursor: "pointer" }}
               onClick={() => setSelectedMenuItem("People")}
               className={selectedMenuItem === "People" ? "selectedli" : ""}
             >

@@ -7,10 +7,19 @@ import ClassContext from "../../contexts/ClassContext";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { toast, ToastContainer } from "react-toastify";
-import {fetchStudentData,fetchStudentSubmission,getStudentSubmissionsWithUserData,getSubmissionStateCounts,}from "../../assets/Functions-Need/SubmissionAdmin";
+import {
+  fetchStudentData,
+  fetchStudentSubmission,
+  getStudentSubmissionsWithUserData,
+  getSubmissionStateCounts,
+} from "../../assets/Functions-Need/SubmissionAdmin";
 import "react-toastify/dist/ReactToastify.css";
-import {Table } from "flowbite-react"
-import {AiOutlineEdit,AiOutlineFolder,AiOutlineDelete,} from "react-icons/ai";
+import { Table } from "flowbite-react";
+import {
+  AiOutlineEdit,
+  AiOutlineFolder,
+  AiOutlineDelete,
+} from "react-icons/ai";
 import Assignment from "../../contexts/Assignment";
 import { useNavigate } from "react-router-dom";
 function AssignmentSection({ token }) {
@@ -47,7 +56,7 @@ function AssignmentSection({ token }) {
         );
         const data = await response.json();
         const assignmentsWithStates = data.map((assignment) => {
-          const states = getSubmissionStateCounts(assignment.submissions);
+          const states = getSubmissionStateCounts(assignment.submissions, 8);
           return {
             ...assignment,
             states,
@@ -107,7 +116,6 @@ function AssignmentSection({ token }) {
 
   return (
     <div className="mt-[20px]">
-
       {filtredassignments &&
         filtredassignments.map((item) => (
           <div

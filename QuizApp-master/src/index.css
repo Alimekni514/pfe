@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato" !important;
+  list-style: none !important;
+}
+.tata ul{
+  margin-top:0px !important ;
+}
+button, [type='button'] {
+  background-color:#f64f64 !important;
+  outline:none!important;
+  border:none!important;
+}

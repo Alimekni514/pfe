@@ -23,7 +23,7 @@ const Sidebar = () => {
         <ul className="sidebar-menu">
           <li className="sidebar-menu-item">
             <SiGoogleclassroom style={{ width: "20px", height: "20px" }} />
-            <Link to="/class">Classes</Link>
+            <Link to="/class/user">Classes</Link>
           </li>
           {/* <li className="sidebar-menu-item">
             <div className="sidebar-menu-link" onClick={toggleServices}>

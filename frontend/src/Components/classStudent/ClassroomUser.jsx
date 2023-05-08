@@ -6,8 +6,8 @@ import Stream from "./Stream";
 import People from "../class/People";
 import ClassContext from "../../contexts/ClassContext";
 import AssignmentSection from "./AssignmentSection";
-const token = window.localStorage.getItem("flat_token_user");
 function ClassroomUser() {
+  const token = window.localStorage.getItem("flat_token_user");
   const { classid } = useParams();
   const [selectedMenuItem, setSelectedMenuItem] = useState("Stream");
   const { classroom, setclassroom } = useContext(ClassContext);

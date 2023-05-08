@@ -78,6 +78,7 @@ function LoginForm() {
           if (res.data.datauser.role === "admin") {
             setadmin(true);
             setbadge(true);
+            localStorage.setItem("flat_token_admin",token);
           } else {
             setuser(true);
             setbadge(true);
@@ -126,7 +127,12 @@ function LoginForm() {
             })
               .then((res) => res.json())
               .then(async (data) => {
-                localStorage.setItem("flat_token_user", data.token);
+                if(res.data.datauser.role === "user") {
+                  localStorage.setItem("flat_token_user", data.token);
+                }else if(res.data.datauser.role === "teacher") {
+                  localStorage.setItem("flat_token_teacher",data.token)
+                }
+               
                 navigate("/my-library");
                 const fetchlinksignin = await fetch(
                   `https://api.flat.io/v2/organizations/users/${filtredid}/signinLink`,

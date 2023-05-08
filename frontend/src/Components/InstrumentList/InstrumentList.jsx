@@ -213,7 +213,9 @@ const InstrumentList = ({
             }
           )
             .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then((t) => {
+              window.location.href = data.htmlUrl;
+            })
             .catch((err) => console.log(err));
         }
         const currentuserlink = "https://api.flat.io/v2/me";

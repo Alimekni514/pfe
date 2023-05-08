@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import { BiCollection } from "react-icons/bi";
 function ScoreLibrary() {
-  const token = window.localStorage.getItem("flat_token_user");
+  const token = window.localStorage.getItem("flat_token_user") || localStorage.getItem("flat_token_admin");
   if (token === "" || token === null || token === undefined) {
     // handle missing token error
     console.error("Missing token");
