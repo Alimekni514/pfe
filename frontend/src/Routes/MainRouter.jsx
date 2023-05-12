@@ -35,6 +35,7 @@ import AssignmentTypes from "../Components/class/AssignmentTypes";
 import ClassroomUser from "../Components/classStudent/ClassroomUser";
 import ClassPageUser from "../pages/ClassPageUser";
 import SkeletonScore from "../Components/classStudent/SkeletonScore";
+import CreateUserForm from "../pages/CreateUserForm";
 function MainRouter() {
   const [admin, setadmin] = useState(
     JSON.parse(localStorage.getItem("_auth_state"))?.role === "admin" && true
@@ -117,6 +118,7 @@ function MainRouter() {
                     />
                     <Route path="/view" element={<ViewPageTeacher />} />
                     <Route path="/people" element={<People />} />
+                    <Route path="/addPeople" element={<CreateUserForm />} />
                   </Routes>
                 </Router>
               </BadgeContext.Provider>

@@ -18,8 +18,10 @@ import ResetPassword from "../Components/People/ResetPassword";
 import EditUserDetails from "../Components/People/EditUserDetails";
 import DeleteUser from "../Components/People/DeleteUser";
 import { useAuthUser } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 function UserTable() {
   const auth = useAuthUser();
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -31,6 +33,7 @@ function UserTable() {
   const [modalIsOpen2, setModalIsOpen2] = useState(false);
   const [modalIsOpen3, setModalIsOpen3] = useState(false);
   const [modalIsOpen4, setModalIsOpen4] = useState(false);
+
   const token = import.meta.env.VITE_ADMIN_TOKEN;
   const customStyles = {
     content: {
@@ -343,7 +346,7 @@ function UserTable() {
             {" "}
             <FcExport /> Export
           </button>
-          <button className="addPeople">
+          <button className="addPeople" onClick={() => navigate("/addPeople")}>
             {" "}
             <HiUserAdd /> Add people
           </button>

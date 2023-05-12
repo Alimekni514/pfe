@@ -14,7 +14,7 @@ import {
   getSubmissionStateCounts,
 } from "../../assets/Functions-Need/SubmissionAdmin";
 import "react-toastify/dist/ReactToastify.css";
-import {Table } from "flowbite-react"
+import { Table } from "flowbite-react";
 import {
   AiOutlineEdit,
   AiOutlineFolder,
@@ -544,46 +544,42 @@ function AssignmentCo({ token }) {
             </div>
           </div>
         ))}
-   {resultQuiz && (<Table>
-  <Table.Head>
-    <Table.HeadCell>
-      Quizz Code
-    </Table.HeadCell>
-    <Table.HeadCell>
-      User
-    </Table.HeadCell>
-    <Table.HeadCell>
-      Score
-    </Table.HeadCell>
-    <Table.HeadCell>
-      Date
-    </Table.HeadCell>
-    <Table.HeadCell>
-      <span className="sr-only">
-        Delete
-      </span>
-    </Table.HeadCell>
-  </Table.Head>
-  <Table.Body className="divide-y">
-    {resultQuiz.map((result) => ( <Table.Row  key={result.user}className="bg-white dark:border-gray-700 dark:bg-gray-800">
-      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-       {result.quizCode}
-      </Table.Cell>
-      <Table.Cell>
-        {result.name}
-      </Table.Cell>
-      <Table.Cell>
-       {result.score}
-      </Table.Cell>
-      <Table.Cell>
-       {result.date}
-      </Table.Cell>
-      <Table.Cell>
-          <a href="/tables" className="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-      </Table.Cell>
-      </Table.Row>))}
-  </Table.Body>
-</Table>)}
+      {resultQuiz && (
+        <Table>
+          <Table.Head>
+            <Table.HeadCell>Quizz Code</Table.HeadCell>
+            <Table.HeadCell>User</Table.HeadCell>
+            <Table.HeadCell>Score</Table.HeadCell>
+            <Table.HeadCell>Date</Table.HeadCell>
+            <Table.HeadCell>
+              <span className="sr-only">Delete</span>
+            </Table.HeadCell>
+          </Table.Head>
+          <Table.Body className="divide-y">
+            {resultQuiz.map((result) => (
+              <Table.Row
+                key={result.user}
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+              >
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  {result.quizCode}
+                </Table.Cell>
+                <Table.Cell>{result.name}</Table.Cell>
+                <Table.Cell>{result.score}</Table.Cell>
+                <Table.Cell>{result.date}</Table.Cell>
+                <Table.Cell>
+                  <a
+                    href="/tables"
+                    className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    Edit
+                  </a>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      )}
       {zeroassignment && (
         <div className="zeroassignment">
           <img
